@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Brandon Grotesque ';
+    src:  url('~@/assets/fonts/brand_ssv/Brandon_bld.otf') format('otf'),
+          url('~@/assets/fonts/brand_ssv/Brandon_bld.otf') format('otf');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Brandon Grotesque';
+    src:  url('~@/assets/fonts/brand_ssv/Brandon_med.otf') format('otf'),
+          url('~@/assets/fonts/brand_ssv/Brandon_med.otf') format('otf');
+    font-weight: medium;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Brandon Grotesque';
+    src:  url("~@/assets/fonts/brand_ssv/Brandon_reg.otf") format('otf'),
+          url("~@/assets/fonts/brand_ssv/Brandon_reg.otf") format('otf');
+    font-weight: normal;
+    font-style: normal;
+  }

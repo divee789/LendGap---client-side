@@ -1,0 +1,189 @@
+<template>
+  <div class="hello">
+    <div class="overlay">
+      <header>
+        <a href class="logo">.lendGap</a>
+        <div class="menu-toggle"></div>
+        <nav class="nav">
+          <ul class="nav-bar" id="ul">
+            <li>
+              <a href="#yip">Become a lender</a>
+            </li>
+            <li>
+              <a href="#products" id="button">Help</a>
+            </li>
+            <li>
+              <a href>Log in</a>
+            </li>
+            <router-link tag="li" to="/sign-in" id="rr">
+              <a>Sign up</a>
+            </router-link>
+          </ul>
+        </nav>
+        <div class="clearfix"></div>
+      </header>
+
+      <div class="info">
+        <h1>Get a quick Loan whenever you need it</h1>
+        <p>With LendGap, you can now borrow money quickly and easily</p>
+        <p>
+          <button>REQUEST FOR LOAN</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.hello {
+  position: relative;
+  background: url("/images/head2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 500% 100%;
+  height: 85vh;
+  color: #fff;
+  .overlay {
+    position: relative;
+    background: rgba(255, 45, 110, 0.85);
+    padding: 0 5%;
+    height: 100%;
+  }
+  .info {
+    position: absolute;
+    bottom: 5rem;
+    left: 10rem;
+  
+    h1 {
+      font-family: "Brandon Grotesque", sans-serif;
+      font-size: 3.5rem;
+      font-weight: bold;
+      letter-spacing: -4px;
+      line-height: 65px;
+      text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
+      width: 70%;
+    }
+
+    button {
+      background-color: #03bf94;
+      padding: 1rem 2rem;
+      color: #fff;
+      border: none;
+      font-weight: 500;
+      font-size: 11px;
+      width:25%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+// NAV-BAR TO BE MOVED TO ANOTHER COMPONENT
+header {
+  position: relative;
+  top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 5;
+  font-weight: bold;
+}
+
+.logo {
+  margin-top: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  float: left;
+  color: #fff;
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+}
+
+nav {
+  float: right;
+}
+#rr a{
+  background: #ecfff6;
+  padding:10px 20px;
+  border-radius: 5px;
+  color:#000;
+}
+
+.clearfix {
+  clear: both;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li {
+  list-style: none;
+  margin-left: 2rem;
+}
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  margin: 10px 1px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 17px;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    position: relative;
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    margin-right: 20px;
+    margin-top: -5px;
+    background: unset;
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    font-size: 30px;
+    color: #2376f3;
+  }
+  .menu-toggle:before {
+    content: "\f0c9";
+    line-height: 40px;
+    font-family: fontAwesome;
+  }
+
+  .menu-toggle.active:before {
+    content: "\f00d";
+  }
+  .nav {
+    display: none;
+  }
+
+  nav.active {
+    display: block;
+    width: 100%;
+  }
+
+  nav.active ul {
+    display: block;
+  }
+
+  nav.active ul li a {
+    margin: 0;
+  }
+}
+</style>
