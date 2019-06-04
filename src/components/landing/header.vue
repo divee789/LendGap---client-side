@@ -45,7 +45,7 @@ export default {};
   background: url("/images/head2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 500% 100%;
+  background-position: 300% 100%;
   height: 85vh;
   color: #fff;
   .overlay {
@@ -58,15 +58,18 @@ export default {};
     position: absolute;
     bottom: 5rem;
     left: 10rem;
-  
+
     h1 {
-      font-family: "Brandon Grotesque", sans-serif;
+      font-family: "Josefin Sans", sans-serif;
       font-size: 3.5rem;
       font-weight: bold;
       letter-spacing: -4px;
       line-height: 65px;
       text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
       width: 70%;
+    }
+    p{
+      font-family: 'Open Sans',sans-serif;
     }
 
     button {
@@ -76,7 +79,7 @@ export default {};
       border: none;
       font-weight: 500;
       font-size: 11px;
-      width:25%;
+      width: 25%;
       border-radius: 5px;
       cursor: pointer;
     }
@@ -91,6 +94,7 @@ header {
   box-sizing: border-box;
   z-index: 5;
   font-weight: bold;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .logo {
@@ -99,18 +103,17 @@ header {
   box-sizing: border-box;
   float: left;
   color: #fff;
-  font-family: "Pacifico", cursive;
   font-size: 30px;
 }
 
 nav {
   float: right;
 }
-#rr a{
+#rr a {
   background: #ecfff6;
-  padding:10px 20px;
+  padding: 10px 20px;
   border-radius: 5px;
-  color:#000;
+  color: #000;
 }
 
 .clearfix {
