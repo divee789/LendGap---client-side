@@ -23,9 +23,9 @@ export default {};
 .funds-app {
   position: relative;
   background: rgba(3, 191, 148, 1);
-  height: 53vh;
+  height: 50vh;
   width: 100%;
-  margin-top:3rem;
+  margin-top:5rem;
   img {
     width: 100%;
     height: 100%;
@@ -40,8 +40,8 @@ export default {};
     color: #ffffff;
     h1 {
       font-family: "Josefin Sans", sans-serif;
-      width: 65%;
-      font-size: 4.2rem;
+      width: 70%;
+      font-size: 4rem;
       font-weight: bold;
       letter-spacing: -5px;
       line-height: 65px;

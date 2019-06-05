@@ -34,6 +34,7 @@ export default {};
 
 .spec {
   width: 28%;
+  height:20vh;
   div {
     font-family: "Josefin Sans", sans-serif;
     font-size: 30px;
