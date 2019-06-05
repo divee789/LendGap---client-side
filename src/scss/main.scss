@@ -1,5 +1,38 @@
- @import "./typo";
 
- a{
-     font-size:70px;
+ .center {
+     text-align: center;
+ }
+
+ .relative {
+     position: relative;
+ }
+
+ .jose {
+     font-family: "Josefin Sans", sans-serif;
+ }
+ .josebold {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight:bold;
+}
+
+ .normal {
+     font-family: "Open Sans";
+     font-size: 15px;
+ }
+
+ .flexbox {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .row {
+     flex-direction: row;
+ }
+
+ .wrap {
+     flex-wrap: wrap;
+ }
+
+ .column {
+     flex-direction: column;
  }

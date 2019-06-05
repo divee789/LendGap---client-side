@@ -12,12 +12,12 @@
 <script>
 export default {
     components: {
-    "app-header": () => import("@/components/landing/header"),
-    "market-place":()=> import("@/components/landing/market"),
-    "app-purpose": () => import("@/components/landing/purpose"),
-    "app-funds": () => import("@/components/landing/funds"),
-    "app-reason": () => import("@/components/landing/reason"),
-    "app-footer": () => import("@/components/landing/footer")
+    "app-header": () => import("@/components/landing/header/header"),
+    "market-place":()=> import("@/components/landing/market/market"),
+    "app-purpose": () => import("@/components/landing/purpose/purpose"),
+    "app-funds": () => import("@/components/landing/funds/funds"),
+    "app-reason": () => import("@/components/landing/reason/reason"),
+    "app-footer": () => import("@/components/landing/footer/footer")
   }
 }
 </script>

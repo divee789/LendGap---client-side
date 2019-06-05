@@ -1,0 +1,42 @@
+.funds-app {
+    position: relative;
+    background: rgba(3, 191, 148, 1);
+    height: 50vh;
+    width: 100%;
+    margin-top:5rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+    .funds {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 50%;
+      color: #ffffff;
+      h1 {
+        width: 70%;
+        font-size: 4rem;
+        letter-spacing: -5px;
+        line-height: 65px;
+        text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
+        margin-bottom: 10px;
+      }
+      .info {
+        width: 80%;
+        line-height: 25px;
+      }
+      button {
+        padding: 0.8rem 2.6rem;
+        font-family: "Open Sans";
+        background-color: #ff2d6e;
+        color:#fff;
+        border:none;
+        border-radius:5px;
+        margin-top:2rem;
+        cursor:pointer;
+      }
+    }
+  }
