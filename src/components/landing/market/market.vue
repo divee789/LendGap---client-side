@@ -8,7 +8,7 @@
     <div class="loan-options flexbox row">
       <div class="opt req">Loan Requests</div>
       <div class="opt offer">Loan Offers</div>
-    </div>
+    </div> 
     <div class="sort-bar flexbox row">
       <div>
         <span class="opacity">Sort by</span>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div>
-      <button>See More</button>
+      <button class="jose">See More</button>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="landing">
         <app-header></app-header>
         <app-purpose></app-purpose>
-        <!-- <market-place></market-place> -->
+        <market-place></market-place>
         <app-funds></app-funds>
         <app-reason></app-reason>
         <!-- <app-footer></app-footer> -->
