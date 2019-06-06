@@ -29,6 +29,7 @@
       }
   
       button {
+        position: relative;
         background-color: #03bf94;
         padding: 1rem 2rem;
         color: #fff;
@@ -38,10 +39,29 @@
         width: 25%;
         border-radius: 5px;
         cursor: pointer;
+       .ripple{
+          position:absolute;
+          width:100%;
+          height:100%;
+          background-color:#FFF;
+          top:0;
+          left:0;
+          transform: scale(0);
+          opacity:0.5;
+        }
+        
       }
+
     }
   }
-  
+  button:hover > .ripple{
+    animation: ripple-in2 2s;
+  }
+  @keyframes ripple-in2 {
+    0% {transform: scaleX(0);}
+    20%{transform: scaleX(1);opacity:0.3;}
+    100%{transform: scaleX(1);opacity:0;}
+   }
   // NAV-BAR TO BE MOVED TO ANOTHER COMPONENT
   header {
     position: relative;
@@ -63,11 +83,16 @@
   nav {
     float: right;
   }
-  #rr a {
+  #rr .a {
     background: #ecfff6;
-    padding: 10px 20px;
     border-radius: 5px;
     color: #000;
+    cursor:pointer;
+    display: block;
+    text-decoration: none;
+    margin: 10px 1px;
+    padding: 10px 20px;
+    font-size: 17px;
   }
   
   .clearfix {
@@ -83,7 +108,7 @@
     list-style: none;
     margin-left: 2rem;
   }
-  nav ul li a {
+  nav ul li a{
     display: block;
     text-decoration: none;
     margin: 10px 1px;

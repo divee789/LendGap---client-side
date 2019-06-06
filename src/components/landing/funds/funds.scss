@@ -1,42 +1,80 @@
 .funds-app {
-    position: relative;
-    background: rgba(3, 191, 148, 1);
-    height: 50vh;
+  position: relative;
+  background: rgba(3, 191, 148, 1);
+  height: 50vh;
+  width: 100%;
+  margin-top: 5rem;
+
+  img {
     width: 100%;
-    margin-top:5rem;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+  }
+
+  .funds {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 50%;
+    color: #ffffff;
+
+    h1 {
+      width: 70%;
+      font-size: 4rem;
+      letter-spacing: -5px;
+      line-height: 65px;
+      text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
+      margin-bottom: 10px;
     }
-    .funds {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 50%;
-      color: #ffffff;
-      h1 {
-        width: 70%;
-        font-size: 4rem;
-        letter-spacing: -5px;
-        line-height: 65px;
-        text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
-        margin-bottom: 10px;
-      }
-      .info {
-        width: 80%;
-        line-height: 25px;
-      }
-      button {
-        padding: 0.8rem 2.6rem;
-        font-family: "Open Sans";
-        background-color: #ff2d6e;
-        color:#fff;
-        border:none;
-        border-radius:5px;
-        margin-top:2rem;
-        cursor:pointer;
+
+    .info {
+      width: 70%;
+      line-height: 25px;
+    }
+
+    button {
+      position: relative;
+      padding: 0.8rem 2.6rem;
+      width: 30%;
+      font-family: "Open Sans";
+      background-color: #ff2d6e;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 2rem;
+      cursor: pointer;
+
+      .ripple {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #FFF;
+        top: 0;
+        left: 0;
+        transform: scale(0);
+        opacity: 0.5;
       }
     }
   }
+}
+
+button:hover>.ripple {
+  animation: ripple-in2 2s;
+}
+
+@keyframes ripple-in2 {
+  0% {
+    transform: scaleX(0);
+  }
+
+  20% {
+    transform: scaleX(1);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}

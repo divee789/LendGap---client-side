@@ -9,7 +9,7 @@
         <p>Do you have a project or business that needs funding? LendGap pro offers startups and business owners access to crowd-funding facilities</p>
       </div>
       <div class="link">
-        <button>Sign up for Pro</button>
+        <button><div class="ripple"></div> Sign up for Pro</button>
       </div>
     </div>
   </div>

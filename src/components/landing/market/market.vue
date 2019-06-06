@@ -12,7 +12,7 @@
     <div class="sort-bar flexbox row">
       <div>
         <span class="opacity">Sort by</span>
-        <select name="Sort" id="sort">
+        <select name="Sort" id="sort" @input="change()">
           <option value="Amount">Amount</option>
           <option value="Duration">Duration</option>
           <option value="Interest">Interest Rate</option>
@@ -34,7 +34,7 @@
           <div>Interest: {{ market.rate }}</div>
           <div>Duration: {{ market.duration }}</div>
         </div>
-        <div class="rating">Lender Rating: {{ stars }}</div>
+        <div class="rating">Lender Rating:</div>
       </div>
     </div>
     <div>
@@ -60,11 +60,24 @@ export default {
         { id: 9, price: "25,000", rate: "10%", duration: "2 months" }
       ]
     };
+  },
+  methods: {
+    change() {
+      if (sort.value == "Amount") {
+        this.limit = "NGN 50000 - NGN 100000";
+      }
+      if (sort.value == "Duration") {
+        this.limit = "1 month - 24 months";
+      }
+      if (sort.value == "Interest") {
+        this.limit = "5% - 20%";
+      }
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
-@import './market.scss'
+@import "./market.scss";
 </style>
 
 
