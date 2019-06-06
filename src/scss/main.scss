@@ -1,4 +1,6 @@
-
+$breakpoint-mobile:600px;
+$breakpoint-tablet:900px;
+$breakpoint-laptop:1200px;
  .center {
      text-align: center;
  }
@@ -36,3 +38,17 @@
  .column {
      flex-direction: column;
  }
+ html, body {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    box-sizing:border-box;
+    overflow-x: hidden; 
+}
+
+//  * {
+//     background: #000 !important;
+//     color: #0f0 !important;
+//     outline: solid #f00 1px !important;
+// }
