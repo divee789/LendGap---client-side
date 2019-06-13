@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard">
        <div class="sidenav">
-
+          Hello World!!!!
        </div>
        <div class="mainContent">
         <div class="nav">

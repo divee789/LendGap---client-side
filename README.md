@@ -1,5 +1,5 @@
 # client
-
+This is an app for Borrowing and Lending Money without any middlemen interference.
 ## Project setup
 ```
 npm install

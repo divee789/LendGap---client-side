@@ -22,7 +22,7 @@
       <div class="opacity s">Showing All</div>
     </div>
     <div class="market-list flexbox wrap">
-      <div v-for="market in markets" :key="market.id" class="market-card" data-aos="fade-down"  data-aos-duration="2000"  data-aos-offset="300">
+      <div v-for="market in markets" :key="market.id" class="market-card" data-aos="fade-up"  data-aos-duration="2000"  data-aos-offset="200">
         <span class="flag">
           <i class="far fa-flag"></i>
         </span>
