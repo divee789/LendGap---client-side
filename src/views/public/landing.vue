@@ -5,7 +5,7 @@
         <market-place></market-place>
         <app-funds></app-funds>
         <app-reason></app-reason>
-        <!-- <app-footer></app-footer> -->
+        <app-footer></app-footer>
     </div>
 </template>
 

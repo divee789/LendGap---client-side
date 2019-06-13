@@ -7,7 +7,7 @@
   height: 85vh;
   color: #fff;
 
-  @media screen and (max-width: $breakpoint-laptop){
+  @media screen and (max-width: $breakpoint-laptop) {
     background-position: unset;
     height: 70vh;
   }
@@ -23,14 +23,16 @@
     position: absolute;
     bottom: 5rem;
     left: 10rem;
+
     @media screen and (max-width: $breakpoint-tablet) {
-     left:3.2rem;     
+      left: 3.2rem;
     }
+
     @media screen and (max-width: $breakpoint-mobile) {
-      bottom: 6rem;   
+      bottom: 6rem;
       left: 1rem;
       text-align: center;
-      margin:0 auto;
+      margin: 0 auto;
     }
 
     h1 {
@@ -39,17 +41,19 @@
       line-height: 65px;
       text-shadow: 3px 4px rgba(0, 0, 0, 0.05);
       width: 70%;
+
       @media screen and (max-width: $breakpoint-tablet) {
-        font-size: 2.5rem; 
+        font-size: 2.5rem;
         line-height: normal;
         width: 60%;
-        text-align:start;
-        letter-spacing:-3px; 
+        text-align: start;
+        letter-spacing: -3px;
       }
+
       @media screen and (max-width: $breakpoint-mobile) {
-        font-size: 2rem;   
-        width: 90%;
-        text-align:center;
+        font-size: 2rem;
+        width: 100%;
+        text-align: center;
       }
     }
 
@@ -68,11 +72,13 @@
       width: 25%;
       border-radius: 5px;
       cursor: pointer;
+
       @media screen and (max-width: $breakpoint-tablet) {
-       width:50%;
-       }
+        width: 50%;
+      }
+
       @media screen and (max-width: $breakpoint-mobile) {
-        width:70%;  
+        width: 70%;
       }
 
       .ripple {
@@ -170,7 +176,7 @@ nav ul li a {
 }
 
 
-@media screen and (max-width: 700px) {   
+@media screen and (max-width: 700px) {
 
   body,
   html {

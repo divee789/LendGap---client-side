@@ -7,8 +7,8 @@
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
-        <span class="close">
-          <i class="fas fa-times" @click="close()"></i>
+        <span class="close" @click="close()" style="cursor:pointer;">
+          <i class="fas fa-times"></i>
         </span>
         <div class="form-header jose" v-if="signin">Create Your Account</div>
         <div class="form-header jose" v-if="!signin">Login to Your Account</div>
@@ -16,65 +16,99 @@
           To request for loan
           <span>or</span> become a lender
         </p>
-        <div class="modal-body">
+        <div class="modal-body flexbox row">
           <div class="form-wrapper">
             <form action v-if="signin">
               <div class="input">
                 FULL NAME
                 <div>
-                  <input required type="text" name="fullName">
+                  <input
+                    type="text"
+                    name="fullName"
+                    required
+                    v-model="userName"
+                    @blur="$v.userName.$touch()"
+                  >
+                  <p v-if="!$v.userName.minLen" class="error">Please provide at least 6 characters.</p>
+                  <!-- <p v-if="!$v.userName.required" class="error">This field must not be empty.</p> -->
                 </div>
               </div>
               <div class="input">
                 EMAIL
                 <div>
-                  <input required type="email" name="logemail">
+                  <input
+                    type="email"
+                    name="logemail"
+                    required
+                    v-model="userEmail"
+                    @blur="$v.userEmail.$touch()"
+                  >
+                  <p v-if="!$v.userEmail.email" class="error">Please provide a valid email address.</p>
+                  <!-- <p v-if="!$v.userEmail.required" class="error">This field must not be empty.</p> -->
                 </div>
               </div>
               <div class="input" id="strength">
                 PASSWORD
                 <div class="inputed">
-                  <input required type="password" name="password" v-model="password" @input="meter()">
+                  <input
+                    type="password"
+                    name="password"
+                    required
+                    v-model="password"
+                    @input="$v.password.$touch()"
+                  >
                   <span class="eye">
                     <i class="fas fa-eye"></i>
                   </span>
                 </div>
                 <div class="password-bar">
                   Password Strength
-                  <div class="strength-bar" :class="bar">
-                    <span :class="bar"></span>
+                  <div class="strength-bar">
+                    <div :class="{invalid: $v.password.$invalid,valid:!$v.password.$invalid}"></div>
                   </div>
                 </div>
+                <p class="error" v-if="!$v.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 6 characters long.</p>
               </div>
               <p class="terms">By creating an account,You are agreeing to our Terms and Conditions</p>
-              <button class="register">Sign In</button>
+              <button class="register">Sign Up</button>
             </form>
             <form action v-if="!signin">
               <div class="input">
                 EMAIL
                 <div>
-                  <input required type="email" name="logemail">
+                  <input
+                    type="email"
+                    name="logemail"
+                    v-model="signInEmail"
+                    @blur="$v.signInEmail.$touch()"
+                  >
+                  <p v-if="!$v.signInEmail.email" class="error">Please provide a valid email address.</p>
                 </div>
               </div>
               <div class="input">
                 PASSWORD
                 <div class="inputed">
-                  <input required type="password" name="password">
+                  <input
+                    type="password"
+                    name="password"
+                    v-model="signInPassword"
+                    @blur="$v.signInPassword.$touch()"
+                  >
                   <span class="eye">
                     <i class="fas fa-eye"></i>
                   </span>
                 </div>
               </div>
               <p class="terms">Forgot Your Password</p>
-              <button class="register">Sign Up</button>
+              <button class="register" type="submit" :disabled="$v.$invalid">Sign In</button>
             </form>
           </div>
           <div class="rule">
-            <div>
+            <div class="block">
               <hr>
             </div>
             <div>OR</div>
-            <div>
+            <div class="block">
               <hr>
             </div>
           </div>
@@ -131,14 +165,49 @@
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
       signin: true,
       bar: "",
       password: null,
-      password_length: 0
+      userEmail: "",
+      userName: "",
+      signInEmail: "",
+      signInPassword: ""
     };
+  },
+  validations: {
+    userEmail: {
+      required,
+      email
+    },
+    signInEmail: {
+      required,
+      email
+    },
+    userName: {
+      required,
+      minLen: minLength(6)
+    },
+    password: {
+      required,
+      minLen: minLength(6),
+       strongPassword(password) {
+        return (
+          /[a-z]/.test(password) && // checks for a-z
+          /[0-9]/.test(password) && // checks for 0-9
+          /\W|_/.test(password) && // checks for special char
+          password.length >= 6
+        )
+       }
+    },
+    signInPassword: {
+      required,
+      minLen: minLength(6)
+    }
   },
   methods: {
     close() {
@@ -146,18 +215,6 @@ export default {
     },
     switchSign() {
       this.signin = !this.signin;
-    },
-    meter() {
-      this.password_length = this.password.length;
-      if (this.password_length < 4) {
-        this.bar = "defaultBar";
-      }
-      if (this.password_length > 4 && this.password_length < 8) {
-        this.bar = "middleBar";
-      }
-      if (this.password_length > 8) {
-        this.bar = "okayBar";
-      }
     }
   }
 };
@@ -167,7 +224,10 @@ export default {
 hr {
   width: 0px;
   height: 10vh;
-  /* or height in PX */
+  @media screen and (max-width: 700px) {
+    height: 1px;
+    width: 50%;
+  }
 }
 .modal-fade-enter,
 .modal-fade-leave-active {
@@ -187,6 +247,7 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   overflow: hidden;
+  overflow-y: scroll;
   z-index: 9999999;
   text-align: start;
 }
@@ -195,6 +256,7 @@ hr {
   position: relative;
   background: #f8f4f4;
   overflow: hidden;
+  overflow-y: scroll;
   top: 10%;
   display: flex;
   margin: 0 auto;
@@ -205,6 +267,11 @@ hr {
   z-index: 99999999;
   box-sizing: border-box;
   color: #000;
+  @media screen and (max-width: 600px) {
+    width: 75%;
+    height: 70vh;
+    margin-left: 8%;
+  }
 }
 .close {
   position: absolute;
@@ -213,6 +280,10 @@ hr {
   cursor: pointer;
   font-size: 40px;
   opacity: 0.5;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+    top: 10px;
+  }
 }
 .form-header {
   font-size: 33px;
@@ -221,6 +292,9 @@ hr {
   line-height: 30px;
   text-align: center;
   color: #ff2d6e;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
 }
 .request {
   opacity: 0.5;
@@ -229,33 +303,45 @@ hr {
   text-align: center;
   font-weight: bold;
   letter-spacing: 1px;
+  @media screen and (max-width: 600px) {
+    line-height: normal;
+  }
   span {
     font-weight: 100;
   }
 }
-.form-wrapper{
-  width:50%;
+.form-wrapper {
+  width: 50%;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 }
-form{
-  width:100%;
+form {
+  width: 100%;
 }
 .modal-body {
   font-size: 15px;
   width: 100%;
-  padding:0 4rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  padding: 0 4rem;
   box-sizing: border-box;
   margin-top: 5rem;
-  .register{
-    background-color: #FF2D6E;
-    color:#fff;
-    padding:0.7rem 2.5rem;
-    margin:0 30%;
-    border:none;
-    cursor:pointer;
-    border-radius:5px;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    padding: 0;
+    margin-top: 2rem;
+  }
+  .register {
+    background-color: #ff2d6e;
+    color: #fff;
+    padding: 0.7rem 2.5rem;
+    margin: 0 30%;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    @media screen and (max-width: 700px) {
+      width: 70%;
+      margin: 0;
+    }
   }
 }
 .input {
@@ -286,7 +372,7 @@ form{
 .eye {
   position: absolute;
   top: 15px;
-  right:16%;
+  right: 16%;
   cursor: pointer;
   .fas {
     font-size: 17px;
@@ -306,20 +392,16 @@ form{
 #strength {
   margin-bottom: 25px;
 }
-.defaultBar {
-  width: 25%;
-  background: red;
-  height: 100px;
-}
-.middleBar {
+.invalid {
   width: 50%;
-  background: yellow;
-  height: 100px;
+  background: red;
+  height: 100%;
 }
-.okayBar {
+
+.valid {
   width: 100%;
   background: green;
-  height: 100px;
+  height: 100%;
 }
 .terms {
   opacity: 0.7;
@@ -327,49 +409,60 @@ form{
   font-family: "Open Sans";
   font-size: 11px;
   text-align: center;
-}
-.option{
-  position:absolute;
-  bottom:10px;
-  right:40%;
-  text-align:center;
-  opacity:0.8;
-  color:#113e52;
-  font-size: 12px;
-  span{
-    cursor:pointer;
-    opacity:1;
-    font-weight:800;
+  @media screen and (max-width: 700px) {
+    text-align: start;
   }
-
 }
-.rule{
-  opacity:0.5;
-  margin-top:2rem;
+.option {
+  // position: absolute;
+  // bottom: 10px;
+  // right: 40%;
+  text-align: center;
+  opacity: 0.8;
+  color: #113e52;
+  font-size: 12px;
+  span {
+    cursor: pointer;
+    opacity: 1;
+    font-weight: 800;
+  }
 }
-.social{
-  display:flex;
+.rule {
+  opacity: 0.5;
+  margin-top: 2rem;
+  @media screen and (max-width: 700px) {
+    text-align: center;
+  }
+}
+.social {
+  display: flex;
   flex-direction: column;
-  justify-content:center;
-  align-content:center;
+  justify-content: center;
+  align-content: center;
   align-items: center;
-  margin:25% 0;
+  margin: 25% 0;
 }
-.vice{
-  color:#fff;
-  cursor:pointer;
-  font-size:17px;
-  padding:0.8rem 2.6rem;
-  border:none;
-  margin:5%;
-  border-radius:5px;
-  width:100%;
+.vice {
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 0.8rem 2.4rem;
+  border: none;
+  margin: 5%;
+  border-radius: 5px;
+  width: 100%;
+  @media screen and (max-width: 500px) {
+    font-size: 11px;
+  }
 }
-.facebook{
-  background-color: #335A9E;
+.facebook {
+  background-color: #335a9e;
 }
-.google{
-background-color: #F03B2C;
+.google {
+  background-color: #f03b2c;
+}
+.error {
+  color: red;
 }
 @media screen and (max-width: 800px) {
   .modal {

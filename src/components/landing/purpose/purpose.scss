@@ -1,43 +1,50 @@
 .purpose {
-    align-content: center;
-    align-items: center;
-    padding:10%;
-    padding-bottom:7%;
+  align-content: center;
+  align-items: center;
+  padding: 10%;
+  padding-bottom: 7%;
+  text-align: center;
+  background: #f8f4f4;
+}
+
+.flexbox {
+  @media screen and (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+.spec {
+  width: 28%;
+  height: 20vh;
+
+  @media screen and (max-width: $breakpoint-tablet) {
+    width: 30%;
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: 100%;
+  }
+
+  div {
+    font-size: 30px;
+    color: #113e52;
+    letter-spacing: -2px;
     text-align: center;
-    background: #f8f4f4;
-  }
-  .flexbox{
-    @media screen and (max-width: $breakpoint-mobile) { 
-      flex-direction:column;   
-     }
-  }
-  
-  .spec {
-    width: 28%;
-    height:20vh;
-    @media screen and (max-width: $breakpoint-tablet) { 
-      width:30%; 
-     }
-    @media screen and (max-width: $breakpoint-mobile) { 
-      width:100%; 
-     }
-    div {
-      font-size: 30px;
-      color: #113e52;
-      letter-spacing: -2px;
-      text-align: center;
-      @media screen and (max-width: $breakpoint-tablet) { 
-        font-size:24px;
-       }
-    }
-    p {
-      font-size: 15px;
-      color: #a4a4a4;
-      line-height: 18px;
-      text-align: center;
-      font-family:"Open Sans",sans-serif;
-      @media screen and (max-width: $breakpoint-tablet) { 
-        font-size:14px;
-       }
+
+    @media screen and (max-width: $breakpoint-tablet) {
+      font-size: 24px;
     }
   }
+
+  p {
+    font-size: 15px;
+    color: #a4a4a4;
+    line-height: 18px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+
+    @media screen and (max-width: $breakpoint-tablet) {
+      font-size: 14px;
+    }
+  }
+}

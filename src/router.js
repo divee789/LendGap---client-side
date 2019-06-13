@@ -17,6 +17,11 @@ export default new Router({
         component: loadView("public/landing")
       },
       {
+        path: "/dashboard/MarketPlace",
+        name: "dashboard",
+        component: loadView("public/dashboard/Marketplace")
+      },
+      {
         path: "*",
         redirect: "/"
       }
