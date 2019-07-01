@@ -22,8 +22,17 @@ export default new Router({
       component: loadView("dashboard/index"),
       children: [{
           path: "/",
-          name: "index",
-          component: loadView("dashboard/Marketplace")
+          name: "market",
+          component: loadView("dashboard/marketplace/index"),
+          children: [{
+              path: "/",
+              component: loadView("dashboard/marketplace/lists")
+            },
+            {
+              path: "market/card",
+              component: loadView("dashboard/marketplace/card")
+            }
+          ]
         },
         {
           path: "borrow",

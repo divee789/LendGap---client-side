@@ -7,7 +7,7 @@ import 'aos/dist/aos.css'
 
 Vue.use(Vuelidate)
 
-//Use vue serve to look run just 1 component
+//Use vue serve to look or run just 1 component
 
 
 Vue.config.productionTip = false
