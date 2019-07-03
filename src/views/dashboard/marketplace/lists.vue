@@ -8,7 +8,7 @@
           <h1 class="josebold">Monitor your Loans From anywhere.</h1>
           <p class="normal">With LendGap Pro,you can easily monitor all your loan offers.</p>
           <div>
-            <button id="pro">
+            <button id="pro" class="jose">
               <div class="ripple"></div>Go Pro
             </button>
           </div>
@@ -32,8 +32,8 @@
         </div>
         <div class="opacity s">Showing All</div>
       </div>
-      <router-link to="/dashboard/market/card" tag="div">
-        <div class="market-list flexbox wrap">
+      
+        <div class="market-list flexbox wrap" @click="showModal">
           <div
             v-for="market in markets"
             :key="market.id"
@@ -56,12 +56,12 @@
             <div class="rating">Lender Rating:</div>
           </div>
         </div>
-      </router-link>
 
       <div>
         <button class="jose">See More</button>
       </div>
     </div>
+    <modal v-show="isModalVisible" @close="closeModal"/>
   </div>
 </template>
 
@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       show: true,
+      isModalVisible: false,
       limit: "NGN 50000 - NGN 100000",
       markets: [
         { id: 1, price: "600,000", rate: "10%", duration: "18 months" },
@@ -93,8 +94,17 @@ export default {
   methods: {
     collapse() {
       this.show = false;
+    },
+     showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
-  }
+  },
+   components: {
+    modal: () => import ('@/components/dashboard/market/modal/index'),
+  },
 };
 </script>
 
@@ -123,14 +133,15 @@ export default {
         padding-left: 6rem;
         h1 {
           width: 35%;
-          opacity:0.8;
-          color:#113652;
-          font-size:36px;
-          letter-spacing:-3px;
+          opacity: 0.8;
+          color: #113652;
+          font-size: 36px;
+          letter-spacing: -3px;
         }
-        p{
-            font-size:12px;
-            // line-height:36px;
+        p {
+          font-size: 12px;
+          font-family: "Open Sans", sans-serif;
+          // line-height:36px;
         }
       }
 

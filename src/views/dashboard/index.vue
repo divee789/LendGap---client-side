@@ -60,7 +60,7 @@ export default {};
   #sidenav {
     position: fixed;
     background: #152c35;
-    width: 15%;
+    width: 17%;
     height: 100%;
     color: #fff;
     line-height: 1.3;
@@ -86,11 +86,12 @@ export default {};
     
       li {
         transition: all 0.5s;
-        font-size: 13px;
-        padding: 20px 20%;
+        font-size: 15px;
+        padding: 20px 10%;
         cursor: pointer;
         .link{
           opacity: 0.7;
+          margin: 0 15%;
         }
         .icon {
           color: #ff2d6e;
@@ -107,7 +108,7 @@ export default {};
     }
   }
   .mainContent {
-    padding-left: 15%;
+    padding-left: 17%;
     box-sizing: border-box;
     width: 100%;
     color: #000;
@@ -121,10 +122,15 @@ export default {};
         padding:0.5rem 1rem;
         font-style: italic;
         font-size:14px;
-        font-family:'Open-Sans',sans-serif;
+        font-family:'Open Sans',sans-serif;
+        &:focus{
+          outline: none;
+        }
       }
       span{
         padding:1rem;
+        font-size: 28px;  
+
       }
       .right{
         margin-right: 4rem;;
