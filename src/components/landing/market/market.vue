@@ -34,7 +34,13 @@
           <div>Interest: {{ market.rate }}</div>
           <div>Duration: {{ market.duration }}</div>
         </div>
-        <div class="rating">Lender Rating:</div>
+        <div class="rating">Lender Rating:   <span class="stars">  
+                <span class="fas fa-star checked"></span>
+                <span class="fas fa-star checked"></span>
+                <span class="fas fa-star checked"></span>
+                <span class="fas fa-star"></span>
+                <span class="fas fa-star"></span>
+              </span></div>
       </div>
     </div>
     <div>

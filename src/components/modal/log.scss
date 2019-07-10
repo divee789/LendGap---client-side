@@ -110,11 +110,15 @@ hr {
     .register {
       background-color: #ff2d6e;
       color: #fff;
-      padding: 0.7rem 2.5rem;
+      padding: 0.7rem 2rem;
       margin: 0 30%;
+      width:50%;
       border: none;
       cursor: pointer;
       border-radius: 5px;
+      &:focus{
+        outline:none; 
+      }
       @media screen and (max-width: 700px) {
         width: 70%;
         margin: 0;
@@ -223,7 +227,7 @@ hr {
     color: #fff;
     cursor: pointer;
     font-size: 17px;
-    padding: 0.8rem 2.4rem;
+    padding: 0.8rem 2rem;
     border: none;
     margin: 5%;
     border-radius: 5px;

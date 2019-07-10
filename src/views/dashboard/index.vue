@@ -80,7 +80,7 @@
 export default {
   data() {
     return {
-      show: true
+      show: false
     };
   },
   methods:{
@@ -91,7 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .smallWidth{
-  width:6%;
+  width:5%;
 }
 .normWidth{
   width:17%;
@@ -118,7 +118,7 @@ export default {
     .fa-chevron-left,.fa-chevron-right{
       position:absolute;
       bottom:10%;
-      right:50%;
+      right:40%;
       cursor: pointer;
       font-size:36px;
       z-index: 9999999999999999999;
@@ -129,7 +129,7 @@ export default {
     }
     .logo {
       text-align: center;
-      margin-top:1rem;
+      margin-top:0.5rem;
       font-size: 24px;
       padding: 1rem;
       cursor: pointer;
@@ -155,7 +155,7 @@ export default {
       li {
         transition: all 0.5s;
         font-size: 15px;
-        padding: 25px 10%;
+        padding: 20px 10%;
         cursor: pointer;
         .link {
           opacity: 0.7;
@@ -165,19 +165,21 @@ export default {
           color: #ff2d6e;
           margin-right: 10px;
         }
-        &:hover,
-        &.active {
+        &:hover {
           transition: all 0.3s;
           background: #ff2d6e;
           span {
             color: #fff;
           }
         }
+         &.router-link-active{
+            color:#ff2d6e;
+          }
       }
     }
   }
   .smallPad{
-   padding-left:6%;
+   padding-left:5%;
   }
   .normPad{
     padding-left:17%;
