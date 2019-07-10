@@ -70,7 +70,7 @@
                 <p class="error" v-if="!$v.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 6 characters long.</p>
               </div>
               <p class="terms">By creating an account,You are agreeing to our Terms and Conditions</p>
-              <button class="register">Sign Up</button>
+              <button class="register" @click="dash">Sign Up</button>
             </form>
             <form action v-if="!signin">
               <div class="input">
@@ -100,7 +100,7 @@
                 </div>
               </div>
               <p class="terms">Forgot Your Password</p>
-              <button class="register" type="submit" :disabled="$v.$invalid">Sign In</button>
+              <button class="register" type="submit" :disabled="$v.$invalid" @click="dash">Sign In</button>
             </form>
           </div>
           <div class="rule">
@@ -215,6 +215,9 @@ export default {
     },
     switchSign() {
       this.signin = !this.signin;
+    },
+    dash(){
+      this.$router.push("/dashboard")
     }
   }
 };

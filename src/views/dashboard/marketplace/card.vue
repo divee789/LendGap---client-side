@@ -1,12 +1,14 @@
 <template>
   <div class="card-specs">
-    <div class="success-alert jose" v-if="open">
+   <div class="experiment">
+      <div class="success-alert jose" v-if="open">
       You have successfully applied for this loan, and the lender has been notified.
       <a
         href="#"
       >Start a conversation?</a>
       <span @click="open = !open">X</span>
     </div>
+   </div>
     <div class="lend-details flexbox row jose">
       <div class="amount-details">
         <div class="top">Loan Details</div>
@@ -69,6 +71,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.experiment{
+  height:8vh;
+  background: #f7f7f7;
+}
 .success-alert {
   position: relative;
   width: 100%;
