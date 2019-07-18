@@ -79,17 +79,18 @@ export default {
       }
       .fa-smile-beam {
         position: absolute;
-        top: 0px;
+        top: -5px;
         right: 43px;
         opacity: 0.5;
-        font-size: 15px;
+        font-size: 18px;
       }
       .fa-paper-plane {
         position: absolute;
-        top: 0px;
+        top: -5px;
         right: 15px;
         opacity: 0.5;
-        font-size: 15px;
+        font-size: 18px;
+        cursor:pointer;
       }
       span {
         padding: 0.5rem 0;

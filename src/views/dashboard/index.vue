@@ -91,7 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .smallWidth{
-  width:5%;
+  width:4.5%;
 }
 .normWidth{
   width:17%;
@@ -106,7 +106,9 @@ export default {
   #sidenav {
     position: fixed;
     background: #152c35;
-    height: 100%;
+    height: 98%;
+    margin:0.5rem 0.5rem;
+    border-radius: 5px;
     color: #fff;
     line-height: 1.3;
     z-index: 999999;
@@ -179,10 +181,10 @@ export default {
     }
   }
   .smallPad{
-   padding-left:5%;
+   padding-left:6%;
   }
   .normPad{
-    padding-left:17%;
+    padding-left:18%;
   }
   .mainContent {
     box-sizing: border-box;

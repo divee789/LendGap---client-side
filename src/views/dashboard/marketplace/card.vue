@@ -139,6 +139,7 @@ export default {
     div {
       margin-bottom: 10px;
       color: #c3c3c3;
+      margin-right:10px;
       #name {
         font-weight: 600;
         font-size: 15px;

@@ -91,10 +91,15 @@ export default {
       ]
     };
   },
+  computed:{
+    market(){
+      return this.$store.getters.loadedMarket 
+    }
+  },
   methods: {
     collapse() {
-      this.show = false;
-    },
+      this.show = false; 
+    }, 
      showModal() {
       this.isModalVisible = true;
     },
@@ -105,6 +110,9 @@ export default {
    components: {
     modal: () => import ('@/components/dashboard/market/modal/index'),
   },
+  created(){
+    this.$store.dispatch("setMarket",this.markets)
+  }
 };
 </script>
 
