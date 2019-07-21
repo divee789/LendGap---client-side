@@ -54,7 +54,7 @@ p {
 }
 
 .offer {
-  background-color: #ff2d6e;
+  background-color: $main-theme;
   color: #fff;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -172,13 +172,9 @@ p {
 
 button {
   margin: 3rem 42%;
-  text-align: center;
   padding: 0.9rem 2rem;
-  border-radius: 5px;
   width: 15%;
   background-color: #d8d8d8;
-  border: none;
-  cursor: pointer;
   @media screen and (max-width: 1200px) {
     width:30%;     
     margin-left:25%;

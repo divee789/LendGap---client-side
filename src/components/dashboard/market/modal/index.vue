@@ -155,15 +155,15 @@ export default {
     }
   }
   #offer {
-    border: 1px solid #ff2d6e;
-    color: #ff2d6e;
+    border: 1px solid $main-theme;
+    color: $main-theme;
     background: #fff;
     margin-bottom: 0.5rem;
     margin-top: 3rem;
     letter-spacing: 0.5px;
   }
   #apply {
-    background-color: #ff2d6e;
+    background-color: $main-theme;
     color: #fff;
     letter-spacing: 0.5px;
     border: none;

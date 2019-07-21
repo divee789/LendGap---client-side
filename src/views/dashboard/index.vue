@@ -1,44 +1,51 @@
 <template>
   <div class="dashboard">
     <transition name="slide">
-      <div id="sidenav" :class="{smallWidth:!show,normWidth:show}">
+      <div class="sidenav" :class="{smallWidth:!show,normWidth:show}">
         <div>
-          
-          <router-link tag="DIV" to="/" class="logo"><span v-if="!show" class="fas fa-home"></span><span v-if="show">.lendgap</span></router-link>
+          <router-link tag="DIV" to="/" class="logo">
+            <span v-if="!show" class="fas fa-home"></span>
+            <span v-if="show">.lendgap</span>
+          </router-link>
           <ul class="sidenav-content">
             <router-link tag="li" to="/dashboard" class="nav-content">
               <span class="link">
                 <span class="icon">
                   <i class="fas fa-search-dollar"></i>
-                </span><span v-if="show"> Marketplace</span>
+                </span>
+                <span v-if="show">Marketplace</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/borrow" class="nav-content">
               <span class="link">
                 <span class="icon">
                   <i class="fas fa-arrow-right"></i>
-                </span> <span v-if="show">Borrow</span>
+                </span>
+                <span v-if="show">Borrow</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/lend" class="nav-content">
               <span class="link">
                 <span class="icon">
                   <i class="fas fa-arrow-left"></i>
-                </span> <span v-if="show">Lend</span>
+                </span>
+                <span v-if="show">Lend</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/history" class="nav-content">
               <span class="link">
                 <span class="icon">
                   <i class="far fa-clock"></i>
-                </span> <span v-if="show">History</span>
+                </span>
+                <span v-if="show">History</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/Account" class="nav-content">
               <span class="link">
                 <span class="icon">
                   <i class="fas fa-user-circle"></i>
-                </span> <span v-if="show">Account</span>
+                </span>
+                <span v-if="show">Account</span>
               </span>
             </router-link>
           </ul>
@@ -53,9 +60,12 @@
 
     <div class="mainContent" :class="{smallPad:!show,normPad:show}">
       <div class="nav flexbox row">
+        <div>
+          <span class="hamburger">X</span>
+        </div>
         <div class="left">
           <span>
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search">X</i>
           </span>
           <input type="search" placeholder="Enter Keywords..." />
         </div>
@@ -65,12 +75,16 @@
               <i class="far fa-bell"></i>
             </span>
           </div>
-          <div>Profile pic</div>
-          <div>Profile name</div>
+          <div>
+            <img src="/images/mercy_daniels.jpg" alt />
+          </div>
+          <div class="name">Mercy Daniels</div>
         </div>
       </div>
       <div>
-        <router-view></router-view>
+        <transition name="slide2">
+          <router-view></router-view>
+        </transition>
       </div>
     </div>
   </div>
@@ -80,22 +94,43 @@
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      hide: false
     };
   },
-  methods:{
-   
+  methods: {},
+  mounted() {
+    var menu = document.querySelector(".hamburger");
+    menu.addEventListener("click", () => {
+      document.querySelector(".sidenav").classList.toggle("active");
+    });
   }
 };
-</script>
+</script> 
 
 <style lang="scss" scoped>
-.smallWidth{
-  width:4.5%;
+img {
+  height: 40px;
+  width: 38px;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-top: 0.4rem;
+  filter: grayscale(0.5);
 }
-.normWidth{
-  width:17%;
+.name {
+  margin-top: 1.2rem;
+  margin-left: 5px;
 }
+.smallWidth {
+  width: 4.5%;
+  @media screen and (max-width: $breakpoint-tablet) {
+    width: 10%;
+  }
+}
+.normWidth {
+  width: 17%;
+}
+
 .dashboard {
   display: flex;
   flex-direction: row;
@@ -103,45 +138,56 @@ export default {
   overflow: hidden;
   font-size: 14px;
   font-family: "Poppins", cursive;
-  #sidenav {
+  .sidenav {
     position: fixed;
     background: #152c35;
-    height: 98%;
-    margin:0.5rem 0.5rem;
-    border-radius: 5px;
+    box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.2);
+    height: 89%;
+    margin: 0.5rem 0.5rem;
+    border-radius: 8px;
     color: #fff;
     line-height: 1.3;
     z-index: 999999;
     box-sizing: border-box;
-    transition: width 0.4s;
-    .fas,.far{
-      font-size:20px;
+    transition: all 0.4s;
+    @media screen and (max-width: $breakpoint-mobile) {
+      display: none;
+      &.active {
+        display: block;
+        margin: 0;
+        margin-top: 1.5rem;
+      }
     }
-    .fa-chevron-left,.fa-chevron-right{
-      position:absolute;
-      bottom:10%;
-      right:40%;
+    .fas,
+    .far {
+      font-size: 20px;
+    }
+    .fa-chevron-left,
+    .fa-chevron-right {
+      position: absolute;
+      bottom: 10%;
+      right: 40%;
       cursor: pointer;
-      font-size:36px;
+      font-size: 36px;
       z-index: 9999999999999999999;
-      color:#ff2d6e;
-      &:hover{
-        color:#fff;
+      color: $main-theme;
+      &:hover {
+        color: #fff;
       }
     }
     .logo {
       text-align: center;
-      margin-top:0.5rem;
+      margin-top: 0.5rem;
       font-size: 24px;
       padding: 1rem;
       cursor: pointer;
       box-sizing: border-box;
-      .fa-home{
-         color: #ff2d6e;
-          margin-right: 10px;
-          &:hover{
-            color:#fff;
-          }
+      .fa-home {
+        color: $main-theme;
+        margin-right: 10px;
+        &:hover {
+          color: #fff;
+        }
       }
     }
     ul {
@@ -164,27 +210,25 @@ export default {
           margin: 0 15%;
         }
         .icon {
-          color: #ff2d6e;
+          color: $main-theme;
           margin-right: 10px;
         }
         &:hover {
           transition: all 0.3s;
-          background: #ff2d6e;
+          background: $main-theme;
           span {
             color: #fff;
           }
         }
-         &.router-link-active{
-            color:#ff2d6e;
-          }
+       
       }
     }
   }
-  .smallPad{
-   padding-left:6%;
+  .smallPad {
+    padding-left: 6%;
   }
-  .normPad{
-    padding-left:18%;
+  .normPad {
+    padding-left: 18%;
   }
   .mainContent {
     box-sizing: border-box;
@@ -192,9 +236,42 @@ export default {
     color: #000;
     box-sizing: border-box;
     transition: padding 0.4s;
+    @media screen and (max-width: $breakpoint-mobile) {
+      padding-left: 0;
+    }
     .nav {
       padding: 1rem;
-      opacity: 0.2;
+      opacity: 0.4;
+      justify-content: space-around;
+      @media screen and (max-width: $breakpoint-mobile) {
+        padding: 0.3rem;
+        opacity: 0.5;
+      }
+      .hamburger {
+        font-size: 25px;
+        display: none;
+        padding: 0;
+        @media screen and (max-width: $breakpoint-mobile) {
+          display: block;
+          margin-top:10px;
+          margin-left:-2.5rem;
+        }
+      }
+      .left {
+        width: 70%;
+        margin-top:1rem;
+        @media screen and (max-width: $breakpoint-mobile) {
+          width: unset;
+          margin-left:10px;
+         display: none;
+
+        }
+      }
+      .right{
+        @media screen and (max-width:$breakpoint-mobile){
+          margin-right: -2.5rem; 
+        }
+      }
       input {
         border: none;
         border-left: 1px solid black;
@@ -202,22 +279,81 @@ export default {
         font-style: italic;
         font-size: 14px;
         font-family: "Open Sans", sans-serif;
-        &:focus {
+        &:focus{
           outline: none;
         }
+        @media screen and (max-width: $breakpoint-mobile) {
+        }
+
       }
       span {
         padding: 1rem;
-        font-size: 28px;
-      }
-      .right {
-        margin-right: 4rem;
+        font-size: 18px;
       }
     }
   }
 }
 
+.slide-enter {
+}
+.slide-enter-active {
+  animation: slide-in 1s ease-out forwards;
+}
+.slide-leave {
+}
+.slide-leave-active {
+  animation: slide-out 1s ease-out forwards;
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
 
+.slide2-enter {
+}
+.slide2-enter-active {
+  animation: slider-in 200ms ease-out forwards;
+  transition: opacity 200ms;
+}
+.slide2-leave {
+}
+.slide2-leave-active {
+  animation: slider-out 200ms ease-out forwards;
+  transition: opacity 200ms;
+}
+@keyframes slider-in {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slider-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
 </style>
 

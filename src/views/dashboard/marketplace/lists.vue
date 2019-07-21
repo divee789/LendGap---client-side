@@ -1,5 +1,6 @@
 <template>
   <div class="market">
+   <transition name="slide" appear>
     <div class="collapsible" v-if="show">
       <!-- <img src="/images/cell1.jpg" alt> -->
       <div class="overlay">
@@ -15,6 +16,7 @@
         </div>
       </div>
     </div>
+    </transition>
     <div class="options">
       <div class="loan-options flexbox row">
         <div class="opt req">Loan Requests</div>
@@ -28,7 +30,7 @@
             <option value="Duration">Duration</option>
             <option value="Interest">Interest Rate</option>
           </select>
-          <span class="opacity">{{ limit }}</span>
+          <span class="opacity limit">{{ limit }}</span>
         </div>
         <div class="opacity s">Showing All</div>
       </div>
@@ -37,7 +39,7 @@
           <div
             v-for="market in markets"
             :key="market.id"
-            class="market-card"
+            class="market-card jose"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-offset="50"
@@ -128,6 +130,9 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+      @media screen and(min-width:$breakpoint-mobile)and (max-width:$breakpoint-tablet){
+      height:25vh;
+    }
     .overlay {
       width: 100%;
       height: 100%;
@@ -139,16 +144,30 @@ export default {
       .info {
         padding-top: 2rem;
         padding-left: 6rem;
+        @media screen and (max-width: 600px) {
+         padding-left:2rem;
+        }
         h1 {
-          width: 35%;
+          width: 30%;
           opacity: 0.8;
           color: #113652;
           font-size: 36px;
-          letter-spacing: -3px;
+          letter-spacing: -1px;
+          @media screen and (max-width: $breakpoint-mobile) {
+         font-size: 28px;
+         width:70%;
+        }
+          @media screen and (max-width:$breakpoint-tablet){
+         width:60%;
+    }
         }
         p {
           font-size: 12px;
           font-family: "Open Sans", sans-serif;
+          @media screen and (max-width:$breakpoint-mobile){
+            width:50%;
+            line-height:18px;
+          }
           // line-height:36px;
         }
       }
@@ -159,53 +178,19 @@ export default {
         padding: 0.6rem 1.6rem;
         margin: unset;
         color: #fff;
-        border: none;
         font-weight: 500;
         font-size: 15px;
         width: 12%;
-        border-radius: 5px;
-        cursor: pointer;
-
         @media screen and (max-width: $breakpoint-tablet) {
-          width: 50%;
+          width: 30%;
         }
 
         @media screen and (max-width: $breakpoint-mobile) {
-          width: 70%;
-        }
-
-        .ripple {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background-color: #fff;
-          top: 0;
-          left: 0;
-          transform: scale(0);
-          opacity: 0.5;
+          width: 30%;
+          font-size: 12px;
         }
       }
     }
-    #pro:hover > .ripple {
-      animation: ripple-in2 2s;
-    }
-
-    @keyframes ripple-in2 {
-      0% {
-        transform: scaleX(0);
-      }
-
-      20% {
-        transform: scaleX(1);
-        opacity: 0.3;
-      }
-
-      100% {
-        transform: scaleX(1);
-        opacity: 0;
-      }
-    }
-
     span {
       position: absolute;
       top: 10px;
@@ -214,6 +199,7 @@ export default {
       color: #fff;
       cursor: pointer;
     }
+  
   }
   .options {
     padding: 0 10%;
@@ -223,15 +209,14 @@ export default {
     justify-content: center;
     align-content: center;
     width: 40%;
-    margin: 1rem auto;
-
+    margin: 2rem auto;
     @media screen and (max-width: $breakpoint-tablet) {
       width: 90%;
     }
   }
   .opt {
-    font-size: 15px;
-    padding: 0.8rem 2rem;
+    font-size: 13px;
+    padding: 0.8rem 1rem;
     font-family: "Josefin Sans", sans-serif;
     cursor: pointer;
   }
@@ -242,7 +227,7 @@ export default {
     border-bottom-left-radius: 5px;
   }
   .offer {
-    background-color: #ff2d6e;
+    background-color: $main-theme;
     color: #fff;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
@@ -253,17 +238,25 @@ export default {
     font-family: "Open Sans";
     font-size: 12px;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: $breakpoint-mobile) {
       flex-direction: column;
     }
     .opacity {
       opacity: 0.5;
+       @media screen and (max-width: $breakpoint-mobile) {
+        margin-left:0;
+      }
+
+    }
+    .limit{
+      margin-left:6px;
+      font-size:11px;
     }
 
     .s {
       margin-right: 2rem;
 
-      @media screen and (max-width: 500px) {
+      @media screen and (max-width: $breakpoint-mobile) {
         margin-right: 5px;
         margin-top: 10px;
       }
@@ -272,8 +265,8 @@ export default {
     span {
       margin-left: 2rem;
 
-      @media screen and (max-width: 500px) {
-        margin-left: 5px;
+      @media screen and (max-width: $breakpoint-mobile) {
+        margin-left: 2rem;
       }
     }
 
@@ -283,8 +276,9 @@ export default {
       border-radius: 5px;
       background: #fff;
 
-      @media screen and (max-width: 500px) {
+      @media screen and (max-width: $breakpoint-mobile) {
         margin-left: 5px;
+        padding:2px;
       }
     }
   }
@@ -299,7 +293,6 @@ export default {
       box-sizing: border-box;
       width: 30%;
       margin-bottom: 20px;
-      font-family: "Josefin Sans", sans-serif;
       border-radius: 5px;
       @media screen and (max-width: 500px) {
         width: 100%;
@@ -357,13 +350,9 @@ export default {
 
   button {
     margin: 3rem 42%;
-    text-align: center;
     padding: 0.9rem 2rem;
-    border-radius: 5px;
     width: 15%;
     background-color: #d8d8d8;
-    border: none;
-    cursor: pointer;
     @media screen and (max-width: 1200px) {
       width: 30%;
       margin-left: 25%;
@@ -372,6 +361,42 @@ export default {
       width: 50%;
       margin-left: 25%;
     }
+  }
+}
+
+.slide-enter{
+
+}
+.slide-enter-active{
+animation: slide-in 200ms ease-out forwards;
+transition:opacity 200ms;
+}
+.slide-leave{
+
+}
+.slide-leave-active{
+animation: slide-out 200ms ease-out forwards;
+transition: opacity 200ms;
+}
+@keyframes slide-in{
+  from{
+    transform:translateY(-30px);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+@keyframes slide-out{
+  from{
+    transform:translateY(0);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-20px);
+    opacity:0;
   }
 }
 </style>

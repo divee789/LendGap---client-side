@@ -24,7 +24,7 @@
       </header>
 
       <div class="info">
-        <h1 class="josebold">Get a quick Loan whenever you need it</h1>
+        <h1 class="josebold">Get a quick Loan whenever you need it.</h1>
         <p>With LendGap, you can now borrow money quickly and easily</p>
         <p>
           <button>

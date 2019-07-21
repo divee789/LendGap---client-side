@@ -68,7 +68,7 @@ hr {
     letter-spacing: -1px;
     line-height: 30px;
     text-align: center;
-    color: #ff2d6e;
+    color:$main-theme;
     @media screen and (max-width: 600px) {
       font-size: 20px;
     }
@@ -108,17 +108,11 @@ hr {
       margin-top: 2rem;
     }
     .register {
-      background-color: #ff2d6e;
+      background-color: $main-theme;
       color: #fff;
       padding: 0.7rem 2rem;
       margin: 0 30%;
       width:50%;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      &:focus{
-        outline:none; 
-      }
       @media screen and (max-width: 700px) {
         width: 70%;
         margin: 0;
@@ -225,12 +219,9 @@ hr {
   }
   .vice {
     color: #fff;
-    cursor: pointer;
     font-size: 17px;
     padding: 0.8rem 2rem;
-    border: none;
     margin: 5%;
-    border-radius: 5px;
     width: 100%;
     @media screen and (max-width: 500px) {
       font-size: 11px;

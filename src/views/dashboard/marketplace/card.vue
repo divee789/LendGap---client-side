@@ -160,43 +160,11 @@ export default {
       margin-left:1rem;
       padding: 0.6rem 1.5rem;
       color: #fff;
-      border: none;
       font-weight: bold;
       font-size: 11px;
       width: 15%;
-      border-radius: 5px;
-      cursor: pointer;
-       .ripple {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #FFF;
-        top: 0;
-        left: 0;
-        transform: scale(0);
-        opacity: 0.5;
-      }
   }
 }
-button:hover>.ripple {
-  animation: ripple-in2 2s;
-}
-@keyframes ripple-in2 {
-  0% {
-    transform: scaleX(0);
-  }
-
-  20% {
-    transform: scaleX(1);
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: scaleX(1);
-    opacity: 0;
-  }
-}
-
 </style>
 
 

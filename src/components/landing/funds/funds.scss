@@ -61,49 +61,15 @@
       padding: 0.8rem 2.6rem;
       width: 30%;
       font-family: "Open Sans";
-      background-color: #ff2d6e;
+      background-color: $main-theme;
       color: #fff;
-      border: none;
-      border-radius: 5px;
       margin-top: 2rem;
-      cursor: pointer;
       @media screen and (max-width: 1200px) {
         width:50%;  
       }
       @media screen and (max-width: 700px) {
         width:70%; 
       }
-
-      .ripple {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: #FFF;
-        top: 0;
-        left: 0;
-        transform: scale(0);
-        opacity: 0.5;
-      }
     }
-  }
-}
-
-button:hover>.ripple {
-  animation: ripple-in2 2s;
-}
-
-@keyframes ripple-in2 {
-  0% {
-    transform: scaleX(0);
-  }
-
-  20% {
-    transform: scaleX(1);
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: scaleX(1);
-    opacity: 0;
   }
 }
