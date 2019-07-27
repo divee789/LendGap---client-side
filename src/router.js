@@ -52,15 +52,27 @@ export default new Router({
     },
     {
       path: "lend",
-      component: loadView("dashboard/Lend")
+      component: loadView("dashboard/Lend/index"),
+      children:[{
+        path:"/",
+        component:loadView("dashboard/Lend/request")
+      },
+      {
+        path:"info",
+        component:loadView("dashboard/Lend/info")
+      },
+      {
+        path:"details",
+        component:loadView("dashboard/Lend/details")
+      }]
     },
     {
       path: "history",
-      component: loadView("dashboard/History")
+      component: loadView("dashboard/History/index"),
     },
     {
       path: "account",
-      component: loadView("dashboard/Account")
+      component: loadView("dashboard/Account/index")
     },
     {
       path: "*",

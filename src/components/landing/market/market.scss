@@ -65,6 +65,7 @@ p {
   align-content: center;
   font-family: "Open Sans";
   font-size: 12px;
+  margin-left:1rem;
 
   @media screen and (max-width:500px) {
     flex-direction: column;
@@ -75,7 +76,7 @@ p {
   }
 
   .s {
-    margin-right: 2rem;
+    margin-right: 4rem;
 
     @media screen and (max-width: 500px) {
       margin-right: 5px;

@@ -1,14 +1,14 @@
 <template>
   <div class="card-specs">
-   <div class="experiment">
+    <div class="experiment">
       <div class="success-alert jose" v-if="open">
-      You have successfully applied for this loan, and the lender has been notified.
-      <a
-        href="#"
-      >Start a conversation?</a>
-      <span @click="open = !open">X</span>
+        You have successfully applied for this loan, and the lender has been notified.
+        <a
+          href="#"
+        >Start a conversation?</a>
+        <span @click="open = !open">X</span>
+      </div>
     </div>
-   </div>
     <div class="lend-details flexbox row jose">
       <div class="amount-details">
         <div class="top">Loan Details</div>
@@ -50,8 +50,11 @@
       </div>
     </div>
     <app-chat></app-chat>
-    <div class="inquiry-alert jose">
-       <span>Have you Received the loan?</span> <button><div class="ripple"></div>Yes</button>
+    <div class="inquiry-alert jose" v-if="got">
+      <span>Have you Received the loan?</span>
+      <button @click="got=!got">
+        <div class="ripple"></div>Yes
+      </button>
     </div>
   </div>
 </template>
@@ -61,19 +64,21 @@ export default {
   data() {
     return {
       open: true,
+      got: true,
       status: "Active"
     };
   },
-  components:{
-     "app-chat": () => import("@/components/dashboard/market/chat"),
+  methods: {},
+  components: {
+    "app-chat": () => import("@/components/dashboard/market/chat")
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.experiment{
-  height:8vh;
-  background: #f7f7f7;
+.experiment {
+  height: 8vh;
+  background: #f8edef;
 }
 .success-alert {
   position: relative;
@@ -94,7 +99,7 @@ export default {
 }
 .lend-details {
   padding: 2% 8%;
-  background:#f7f7f7;
+  background: #f8edef;
   .amount-details {
     width: 33%;
     div {
@@ -106,8 +111,8 @@ export default {
     }
     .naira {
       font-size: 36px;
-      span{
-        font-size:24px;
+      span {
+        font-size: 24px;
       }
     }
     .transact {
@@ -139,30 +144,30 @@ export default {
     div {
       margin-bottom: 10px;
       color: #c3c3c3;
-      margin-right:10px;
+      margin-right: 10px;
       #name {
         font-weight: 600;
         font-size: 15px;
-        color:#837777;
+        color: #837777;
       }
     }
   }
 }
 
-.inquiry-alert{
-  padding:1.5% 10%;
-  text-align:end;
+.inquiry-alert {
+  padding: 1.5% 10%;
+  text-align: end;
   background: rgba(255, 45, 110, 1);
-  color:#fff;
-  button{
-     position: relative;
-      background-color: #03bf94;
-      margin-left:1rem;
-      padding: 0.6rem 1.5rem;
-      color: #fff;
-      font-weight: bold;
-      font-size: 11px;
-      width: 15%;
+  color: #fff;
+  button {
+    position: relative;
+    background-color: #03bf94;
+    margin-left: 1rem;
+    padding: 0.6rem 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 11px;
+    width: 15%;
   }
 }
 </style>

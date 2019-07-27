@@ -5,13 +5,13 @@
     
       <div>
         <button @click="toInfo">
-          <span class="ripple"></span>REQUEST FOR LOAN
+          <span class="ripple"></span>OFFER A LOAN
         </button>
       </div>
 
         <div class="info">
         You now have
-        <span>3 unused loan requests </span>remaining
+        <span>3 unused loan offers </span>remaining
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@ import { setTimeout } from 'timers';
 export default {
   methods: {
     toInfo() {setTimeout(()=>{
-      this.$router.push("/dashboard/borrow/details");       
+      this.$router.push("/dashboard/lend/details");       
     },2000)
     }
   }

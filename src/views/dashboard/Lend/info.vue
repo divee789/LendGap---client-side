@@ -4,17 +4,17 @@
       <div>
         <span class="far fa-clock"></span>
       </div>
-      <div>Your loan request was submitted successfully</div>
+      <div>Your loan offer was submitted successfully</div>
       <div>
         You now have
-        <span>2 unused loan requests </span>remaining
+        <span>2 unused loan offers </span>remaining
       </div>
       <div>
         <button @click="toDetails">
           <span class="ripple"></span>VIEW DETAILS
         </button>
       </div>
-      <div class="else" @click="toInfo">or Request for another loan</div>
+      <div class="else" @click="toInfo">or Offer another loan</div>
     </div>
   </div>
 </template>
@@ -22,10 +22,10 @@
 export default {
   methods: {
     toInfo() {
-      this.$router.push("/dashboard/borrow");
+      this.$router.push("/dashboard/lend");
     },
     toDetails() {
-      this.$router.push("/dashboard/borrow/details");
+      this.$router.push("/dashboard/lend/details");
     }
   }
 };

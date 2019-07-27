@@ -106,7 +106,7 @@ export default {
     });
   }
 };
-</script> 
+</script> 9
 
 <style lang="scss" scoped>
 img {
@@ -137,7 +137,7 @@ img {
   width: 100%;
   overflow: hidden;
   font-size: 14px;
-  font-family: "Poppins", cursive;
+  font-family: "Josefin Sans", sans-serif;
   .sidenav {
     position: fixed;
     background: #152c35;
@@ -240,7 +240,8 @@ img {
       padding-left: 0;
     }
     .nav {
-      padding: 1rem;
+      padding: 0.8rem;
+      padding-top:0.5rem;
       opacity: 0.4;
       justify-content: space-around;
       @media screen and (max-width: $breakpoint-mobile) {
@@ -266,6 +267,11 @@ img {
          display: none;
 
         }
+
+
+
+
+        
       }
       .right{
         @media screen and (max-width:$breakpoint-mobile){

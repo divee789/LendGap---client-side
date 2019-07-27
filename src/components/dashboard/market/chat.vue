@@ -32,7 +32,7 @@ export default {
 .chat-section {
   height: 80vh;
   position: relative;
-  background: #e0dede;
+  background: #f7f7f7;
   .chat-icon {
     padding: 13% 0;
     margin: 0 auto;

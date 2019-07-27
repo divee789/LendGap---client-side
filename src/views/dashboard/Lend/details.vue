@@ -1,11 +1,11 @@
 <template>
   <div class="loan-request">
     <form>
-      <div class="form-title opaque jose">New Loan Request</div>
+      <div class="form-title opaque jose">New Loan Offer</div>
       <div class="form-input" jose>
         <div class="question">
           AMOUNT
-          <span>(HOW MUCH DO YOU WANT TO BORROW?)</span>
+          <span>(HOW MUCH DO YOU WANT TO LEND?)</span>
         </div>
         <div>
           <span class="symbol">N</span>
@@ -61,16 +61,6 @@
       </div>
       <div class="form-input">
         <div class="question">
-          PURPOSE
-          <span>(WHY DO YOU NEED THIS LOAN?)</span>
-        </div>
-        <div>
-          <textarea  required v-model="loanReason" @blur="$v.loanReason.$touch()" :class="{invalid:$v.loanReason.invalid,valid:!$v.loanReason.invalid}"/>
-          <span class="error" v-if="!$v.loanReason.minLen">This Field must contain more than 9 characters</span>
-        </div>
-      </div>
-      <div class="form-input">
-        <div class="question">
           REPAYMENT TYPE
           <span>(PAYBACK FREQUENCY)</span>
         </div>
@@ -83,7 +73,7 @@
         <div class="notification">
           <ul>
             <li class="josebold">
-              You will payback
+              You will be paid
               <span>N{{ installMent }}</span>
               every {{type}}, for
               <span>{{ timePeriod }} {{ type }}</span>
@@ -93,13 +83,13 @@
       </div>
       <div
         class="form-input text jose"
-      >When you submit a loan request, LendGap uploads it to the Marketplace where potential Lenders can view and assess,and choose to accept the request.The higher your rating,the more likely and quickly your request will be accepted.Ensure you stick to the terms of this request,Funding on LendGap is simple and clear, with no hidden fees.</div>
+      >When you submit a loan offer, LendGap uploads it to the Marketplace where potential Borrowers can view and assess,and choose to take the offer.Most Borrowers prefer offers from Lenders with high ratings.Ensure you stick to the terms of this request,Funding on LendGap is simple and clear, with no hidden fees.NOTE:LendGap collects a service fee equivalent to 2 percent of the Repayment on every loan offer</div>
       <div>
         <p class="conditions josebold">
           <input type="checkbox" class="check" /> i fully understand and accept the
           <span>
             <a href="#">terms and conditions</a>
-          </span> of borrowing on LendGap
+          </span> of lending on LendGap
         </p>
       </div>
       <div class="form-input jose">
@@ -122,7 +112,6 @@ export default {
       empty: true,
       condition: false,
       amountWanted: 0,
-      loanReason:"",
       timePeriod: 0
     };
   },
@@ -132,10 +121,6 @@ export default {
      },
      timePeriod:{
         required
-     },
-     loanReason:{
-       required,
-       minLen:minLength(9)
      },
      installMent:{
        required
@@ -150,7 +135,7 @@ export default {
     },
     // toNext(){
     //  setTimeout(()=>{
-    //     this.$router.push("/dashboard/borrow/info")
+    //     this.$router.push("/dashboard/lend/info")
     //  },1000)
     // }
   }
@@ -295,21 +280,6 @@ export default {
       }
       #loan {
         padding-left: 3rem;
-      }
-      textarea {
-        width: 50%;
-        height: 13vh;
-        border: none;
-        border-radius: 5px;
-        border: 1px solid #c3c3c3;
-        padding: 1rem 1rem;
-        box-sizing: border-box;
-        &:focus {
-          outline: none;
-        }
-          @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
-    }
       }
     }
     .text {

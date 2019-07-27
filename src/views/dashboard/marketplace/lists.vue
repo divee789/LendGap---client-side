@@ -40,7 +40,7 @@
             v-for="market in markets"
             :key="market.id"
             class="market-card jose"
-            data-aos="fade-up"
+            data-aos="fade-right"
             data-aos-duration="1000"
             data-aos-offset="50"
           >
@@ -121,6 +121,7 @@ export default {
 <style lang="scss" scoped>
 .market {
   height: 100%;
+  background:#f7f7f7;
   .collapsible {
     position: relative;
     height: 45vh;
@@ -146,6 +147,7 @@ export default {
         padding-left: 6rem;
         @media screen and (max-width: 600px) {
          padding-left:2rem;
+         padding-top:1rem;
         }
         h1 {
           width: 30%;
@@ -237,7 +239,9 @@ export default {
     align-content: center;
     font-family: "Open Sans";
     font-size: 12px;
-
+    background:#fff;
+    border-radius:5px;
+    padding:0.5rem;
     @media screen and (max-width: $breakpoint-mobile) {
       flex-direction: column;
     }
@@ -255,7 +259,7 @@ export default {
 
     .s {
       margin-right: 2rem;
-
+      margin-top:0.6rem;
       @media screen and (max-width: $breakpoint-mobile) {
         margin-right: 5px;
         margin-top: 10px;
@@ -294,6 +298,7 @@ export default {
       width: 30%;
       margin-bottom: 20px;
       border-radius: 5px;
+      background:#fff;
       @media screen and (max-width: 500px) {
         width: 100%;
       }
