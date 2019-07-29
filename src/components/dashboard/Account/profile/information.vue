@@ -12,7 +12,7 @@
             <div class="top">FULL NAME</div>
             <div class="bottom">Mercy Daniels Olokor</div>
           </div>
-          <div class="item">
+          <div class="item exc">
             <div class="top">GENDER</div>
             <div class="bottom">Female</div>
           </div>
@@ -22,7 +22,7 @@
             <div class="top">EMAIL</div>
             <div class="bottom">divee789@gmail.com</div>
           </div>
-          <div class="item">
+          <div class="item exc">
             <div class="top">PHONE</div>
             <div class="bottom">07061630054</div>
           </div>
@@ -32,7 +32,7 @@
             <div class="top">DATE OF BIRTH</div>
             <div class="bottom">01-December-1999</div>
           </div>
-          <div class="item">
+          <div class="item exc">
             <div class="top">LOCATION</div>
             <div class="bottom">Canaanland,Ota</div>
           </div>
@@ -49,6 +49,8 @@ export default {};
 <style lang="scss" scoped>
 .profile-information {
   box-sizing: border-box;
+  border-bottom: 1px solid #a4a4a4;
+  padding-bottom: 5rem;
   .title{
     margin-bottom:3rem;
     font-size:32px;
@@ -97,6 +99,9 @@ export default {};
           font-weight:bold;
           font-size:17px;
         }
+      }
+      .exc{
+          margin-left:5rem;
       }
     }
   }

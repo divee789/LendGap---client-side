@@ -98,13 +98,16 @@ export default {
   z-index: 99999999;
   box-sizing: border-box;
   color: #000;
-  @media screen and (max-width: 600px) {
-    width: 75%;
+  @media screen and (max-width: $breakpoint-mobile) {
+    width:90%;
     height: 70vh;
-    margin-left: 8%;
+    margin-right:5%;
   }
   .row {
     height: 100%;
+    @media screen and(max-width: $breakpoint-mobile){
+      flex-direction: column;
+    }
   }
 }
 .close {
@@ -124,6 +127,9 @@ export default {
   width: 50%;
   padding: 1rem 4rem;
   padding-top: 8%;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:70%;
+    }
 }
 .general-info {
   background: #f7f7f7;
@@ -131,9 +137,15 @@ export default {
     color: #a4a4a4;
     font-size: 11.59px;
     text-align: left;
+      @media screen and(max-width: $breakpoint-mobile){
+      font-size: 13.59px;
+    }
   }
   .in {
     margin-top: 11rem;
+      @media screen and(max-width: $breakpoint-mobile){
+      margin-top:3rem;
+    }
   }
   .slight {
     font-size: 12px;

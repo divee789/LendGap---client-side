@@ -87,6 +87,12 @@ export default {
   background: #03bf94;
   padding: 20px 0;
   color: #fff;
+    @media screen and(max-width: $breakpoint-mobile){
+      letter-spacing:1px;
+      padding: 1.5rem 1rem;
+      font-size:13px;
+      box-sizing:border-box;
+    }
   a {
     color: #fff;
   }
@@ -95,11 +101,19 @@ export default {
     top: 0.8rem;
     right: 1rem;
     cursor: pointer;
+      @media screen and(max-width: $breakpoint-mobile){
+      top:0.2rem;
+      font-size:18px;
+    }
   }
 }
 .lend-details {
   padding: 2% 8%;
   background: #f8edef;
+  flex-wrap: wrap;
+    @media screen and(max-width: $breakpoint-mobile){
+      padding-top:10%;
+    }
   .amount-details {
     width: 33%;
     div {

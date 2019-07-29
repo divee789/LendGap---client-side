@@ -45,7 +45,7 @@ export default {
   components: {
     "app-profile": () => import("@/components/dashboard/Account/profile/index"),
     "app-bank": () => import("@/components/dashboard/Account/bank"),
-    "app-settings": () => import("@/components/dashboard/Account/settings")
+    "app-settings": () => import("@/components/dashboard/Account/settings/index")
   }
 };
 </script>
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 .app {
   background: #f7f7f7;
-  height: 100vh;
+  padding-bottom:3rem;
   margin-top: -0.5rem;
   .loan-options {
     justify-content: center;
