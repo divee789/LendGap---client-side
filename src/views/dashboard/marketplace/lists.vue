@@ -1,21 +1,21 @@
 <template>
   <div class="market">
-   <transition name="slide" appear>
-    <div class="collapsible" v-if="show">
-      <!-- <img src="/images/cell1.jpg" alt> -->
-      <div class="overlay">
-        <span @click="collapse">X</span>
-        <div class="info">
-          <h1 class="josebold">Monitor your Loans From anywhere.</h1>
-          <p class="normal">With LendGap Pro,you can easily monitor all your loan offers.</p>
-          <div>
-            <button id="pro" class="jose">
-              <div class="ripple"></div>Go Pro
-            </button>
+    <transition name="slide" appear>
+      <div class="collapsible" v-if="show">
+        <!-- <img src="/images/cell1.jpg" alt> -->
+        <div class="overlay">
+          <span @click="collapse">X</span>
+          <div class="info">
+            <h1 class="josebold">Monitor your Loans From anywhere.</h1>
+            <p class="normal">With LendGap Pro,you can easily monitor all your loan offers.</p>
+            <div>
+              <button id="pro" class="jose">
+                <div class="ripple"></div>Go Pro
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </transition>
     <div class="options">
       <div class="loan-options flexbox row">
@@ -34,36 +34,37 @@
         </div>
         <div class="opacity s">Showing All</div>
       </div>
-      
-        <div class="market-list flexbox wrap" @click="showModal">
-          <div
-            v-for="market in markets"
-            :key="market.id"
-            class="market-card jose"
-            data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-offset="50"
-          >
-            <span class="flag">
-              <i class="far fa-flag"></i>
-            </span>
-            <div class="values">
-              <div>
-                <span class="n">N</span>
-                <span class="price">{{ market.price }}</span>
-              </div>
-              <div>Interest: {{ market.rate }}</div>
-              <div>Duration: {{ market.duration }}</div>
+
+      <div class="market-list flexbox wrap">
+        <div
+          v-for="offer in offers"
+          :key="offer.id"
+           @click="showModal"
+          class="market-card jose"
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          data-aos-offset="50"
+        >
+          <span class="flag">
+            <i class="far fa-flag"></i>
+          </span>
+          <div class="values">
+            <div>
+              <span class="n">N</span>
+              <span class="price">{{ offer.loan }}</span>
             </div>
-            <div class="rating">Lender Rating:</div>
+            <div>Interest: {{ offer.interest }}</div>
+            <div>Duration: {{ offer .duration }}</div>
           </div>
+          <div class="rating">Lender Rating:</div>
         </div>
+      </div>
 
       <div>
         <button class="jose">See More</button>
       </div>
     </div>
-    <modal v-show="isModalVisible" @close="closeModal"/>
+    <modal v-show="isModalVisible" @close="closeModal" :offer='offers' />
   </div>
 </template>
 
@@ -73,47 +74,31 @@ export default {
     return {
       show: true,
       isModalVisible: false,
-      limit: "NGN 50000 - NGN 100000",
-      markets: [
-        { id: 1, price: "600,000", rate: "10%", duration: "18 months" },
-        { id: 2, price: "55,000", rate: "8%", duration: "3 months" },
-        { id: 3, price: "350,000", rate: "15%", duration: "6 months" },
-        { id: 4, price: "100,000", rate: "5%", duration: "6 months" },
-        { id: 5, price: "600,000", rate: "10%", duration: "18 months" },
-        { id: 6, price: "10,000", rate: "10%", duration: "1 month" },
-        { id: 7, price: "2,000,000", rate: "10%", duration: "24 months" },
-        { id: 8, price: "45,000", rate: "20%", duration: "1 month" },
-        { id: 9, price: "25,000", rate: "10%", duration: "2 months" },
-        { id: 10, price: "105,000", rate: "7%", duration: "5 months" },
-        { id: 11, price: "15,000", rate: "20%", duration: "1 months" },
-        { id: 12, price: "55,000", rate: "10%", duration: "5 months" },
-        { id: 13, price: "75,000", rate: "13%", duration: "4 months" },
-        { id: 14, price: "85,000", rate: "100%", duration: "12 months" },
-        { id: 15, price: "65,000", rate: "10%", duration: "2 months" }
-      ]
+      limit: "NGN 50000 - NGN 100000"
     };
   },
-  computed:{
-    market(){
-      return this.$store.getters.loadedMarket 
+  computed: {
+    offers() {
+      return this.$store.getters.offers;
     }
+  },
+  async created() {
+    this.$store.dispatch("getOffer");
   },
   methods: {
     collapse() {
-      this.show = false; 
-    }, 
-     showModal() {
+      this.show = false;
+    },
+    showModal() {
       this.isModalVisible = true;
+      // this.$router.push("dashboard/id");
     },
     closeModal() {
       this.isModalVisible = false;
     }
   },
-   components: {
-    modal: () => import ('@/components/dashboard/market/modal/index'),
-  },
-  created(){
-    this.$store.dispatch("setMarket",this.markets)
+  components: {
+    modal: () => import("@/components/dashboard/market/modal/index")
   }
 };
 </script>
@@ -121,7 +106,7 @@ export default {
 <style lang="scss" scoped>
 .market {
   height: 100%;
-  background:#f7f7f7;
+  background: #f7f7f7;
   .collapsible {
     position: relative;
     height: 45vh;
@@ -131,8 +116,8 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-      @media screen and(min-width:$breakpoint-mobile)and (max-width:$breakpoint-tablet){
-      height:25vh;
+    @media screen and(min-width:$breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+      height: 25vh;
     }
     .overlay {
       width: 100%;
@@ -146,8 +131,8 @@ export default {
         padding-top: 2rem;
         padding-left: 6rem;
         @media screen and (max-width: 600px) {
-         padding-left:2rem;
-         padding-top:1rem;
+          padding-left: 2rem;
+          padding-top: 1rem;
         }
         h1 {
           width: 30%;
@@ -156,19 +141,19 @@ export default {
           font-size: 36px;
           letter-spacing: -1px;
           @media screen and (max-width: $breakpoint-mobile) {
-         font-size: 28px;
-         width:70%;
-        }
-          @media screen and (max-width:$breakpoint-tablet){
-         width:60%;
-    }
+            font-size: 28px;
+            width: 70%;
+          }
+          @media screen and (max-width: $breakpoint-tablet) {
+            width: 60%;
+          }
         }
         p {
           font-size: 12px;
           font-family: "Open Sans", sans-serif;
-          @media screen and (max-width:$breakpoint-mobile){
-            width:50%;
-            line-height:18px;
+          @media screen and (max-width: $breakpoint-mobile) {
+            width: 50%;
+            line-height: 18px;
           }
           // line-height:36px;
         }
@@ -184,11 +169,11 @@ export default {
         font-size: 15px;
         width: 12%;
         @media screen and (max-width: $breakpoint-tablet) {
-          width: 30%;
+          width: 40%;
         }
 
         @media screen and (max-width: $breakpoint-mobile) {
-          width: 30%;
+          width: 40%;
           font-size: 12px;
         }
       }
@@ -201,7 +186,6 @@ export default {
       color: #fff;
       cursor: pointer;
     }
-  
   }
   .options {
     padding: 0 10%;
@@ -239,27 +223,26 @@ export default {
     align-content: center;
     font-family: "Open Sans";
     font-size: 12px;
-    background:#fff;
-    border-radius:5px;
-    padding:0.5rem;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0.5rem;
     @media screen and (max-width: $breakpoint-mobile) {
       flex-direction: column;
     }
     .opacity {
       opacity: 0.5;
-       @media screen and (max-width: $breakpoint-mobile) {
-        margin-left:0;
+      @media screen and (max-width: $breakpoint-mobile) {
+        margin-left: 0;
       }
-
     }
-    .limit{
-      margin-left:6px;
-      font-size:11px;
+    .limit {
+      margin-left: 6px;
+      font-size: 11px;
     }
 
     .s {
       margin-right: 2rem;
-      margin-top:0.6rem;
+      margin-top: 0.6rem;
       @media screen and (max-width: $breakpoint-mobile) {
         margin-right: 5px;
         margin-top: 10px;
@@ -282,7 +265,7 @@ export default {
 
       @media screen and (max-width: $breakpoint-mobile) {
         margin-left: 5px;
-        padding:2px;
+        padding: 2px;
       }
     }
   }
@@ -298,7 +281,7 @@ export default {
       width: 30%;
       margin-bottom: 20px;
       border-radius: 5px;
-      background:#fff;
+      background: #fff;
       @media screen and (max-width: 500px) {
         width: 100%;
       }
@@ -369,39 +352,37 @@ export default {
   }
 }
 
-.slide-enter{
-
+.slide-enter {
 }
-.slide-enter-active{
-animation: slide-in 200ms ease-out forwards;
-transition:opacity 200ms;
+.slide-enter-active {
+  animation: slide-in 200ms ease-out forwards;
+  transition: opacity 200ms;
 }
-.slide-leave{
-
+.slide-leave {
 }
-.slide-leave-active{
-animation: slide-out 200ms ease-out forwards;
-transition: opacity 200ms;
+.slide-leave-active {
+  animation: slide-out 200ms ease-out forwards;
+  transition: opacity 200ms;
 }
-@keyframes slide-in{
-  from{
-    transform:translateY(-30px);
-    opacity:0;
+@keyframes slide-in {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
   }
-  to{
-    transform:translateY(0);
-    opacity:1;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@keyframes slide-out{
-  from{
-    transform:translateY(0);
-    opacity:1;
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
   }
-  to{
-    transform:translateY(-20px);
-    opacity:0;
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
   }
 }
 </style>

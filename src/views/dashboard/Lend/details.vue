@@ -9,10 +9,18 @@
         </div>
         <div>
           <span class="symbol">N</span>
-          <input id="loan" type="number" placeholder="000,000"  name="required-amount" required v-model="amountWanted"  @blur="$v.amountWanted.$touch()"
-          :class="{invalid:$v.amountWanted.$invalid}" />
+          <input
+            id="loan"
+            type="number"
+            placeholder="000,000"
+            name="loan"
+            required
+            v-model="loan"
+            @blur="$v.loan.$touch()"
+            :class="{invalid:$v.loan.$invalid}"
+          />
           <span class="error">
-            <span v-if="!$v.amountWanted.minLen">You must put more than 3 figures</span>
+            <span v-if="!$v.loan.minLen">You must put more than 3 figures</span>
           </span>
         </div>
       </div>
@@ -23,7 +31,16 @@
         </div>
         <div class="twice-input">
           <div class="time">
-            <input class="duration" required type="number" placeholder="0" v-model="timePeriod" name="period" @blur="$v.timePeriod.$touch()" :class="{invalid:$v.timePeriod.$invalid}"/>
+            <input
+              class="duration"
+              required
+              type="number"
+              placeholder="0"
+              v-model="duration"
+              name="duration"
+              @blur="$v.duration.$touch()"
+              :class="{invalid:$v.duration.$invalid}"
+            />
           </div>
           <div class="time-frame">
             <select class="normal" v-model="type">
@@ -32,12 +49,12 @@
             </select>
           </div>
         </div>
-        <span class="error" v-if="$v.timePeriod.$invalid">This Field must not be empty</span>
+        <span class="error" v-if="$v.duration.$invalid">This Field must not be empty</span>
       </div>
       <div class="form-input">
         <div class="question">START DATE</div>
         <div class="fif">
-          <input type="date"/>
+          <input type="date" />
           <span class="calendar">B</span>
         </div>
       </div>
@@ -47,7 +64,7 @@
           <span>(%)</span>
         </div>
         <div>
-          <input type="number" v-model="interest" @input="payback" required />
+          <input type="number" name="interest" v-model="interest" @input="payback" required />
         </div>
       </div>
       <div class="form-input">
@@ -65,7 +82,13 @@
           <span>(PAYBACK FREQUENCY)</span>
         </div>
         <div>
-          <input type="number" placeholder="Monthly Installments" v-model="installMent" @blur="$v.installMent.$touch()" :class="{invalid:$v.installMent.$invalid}"/>
+          <input
+            type="number"
+            placeholder="Monthly Installments"
+            v-model="installMent"
+            @blur="$v.installMent.$touch()"
+            :class="{invalid:$v.installMent.$invalid}"
+          />
           <span class="error" v-if="$v.installMent.$invalid">This Field must not be empty</span>
         </div>
       </div>
@@ -76,7 +99,7 @@
               You will be paid
               <span>N{{ installMent }}</span>
               every {{type}}, for
-              <span>{{ timePeriod }} {{ type }}</span>
+              <span>{{ duration }} {{ type }}</span>
             </li>
           </ul>
         </div>
@@ -93,33 +116,37 @@
         </p>
       </div>
       <div class="form-input jose">
-        <button @click="toNext">
+        <button @click="proceed">
           <span class="ripple"></span> SUBMIT
         </button>
       </div>
+      <div v-if="success" class="success">Your request has been successfully added</div>
     </form>
   </div>
 </template>
 <script>
 import { required,minLength } from "vuelidate/lib/validators";
+// import axios from 'axios';
+import offerService from '../../../markets'
 export default {
   data() {
     return {
       installMent: "",
       type: "Months",
-      pay: 0,
-      interest: 0,
+      pay: "",
+      interest: "",
       empty: true,
       condition: false,
-      amountWanted: 0,
-      timePeriod: 0
+      loan: "",
+      duration: "",
+      success:false
     };
   },
   validations:{
-     amountWanted:{
+     loan:{
        minLen:minLength(3)
      },
-     timePeriod:{
+     duration:{
         required
      },
      installMent:{
@@ -129,15 +156,21 @@ export default {
   methods: {
     payback() {
       let percentage = this.interest /100;
-      let profit = this.amountWanted * percentage
-      let result = this.amountWanted + profit
+      let profit = this.loan * percentage
+      let result = this.loan + profit
       return this.pay = result
     },
-    // toNext(){
-    //  setTimeout(()=>{
-    //     this.$router.push("/dashboard/lend/info")
-    //  },1000)
-    // }
+     async proceed()  {
+      event.preventDefault()
+      const offer = {
+        loan:this.loan,
+        duration:this.duration,
+        interest:this.interest
+      }
+      await this.$store.dispatch("setOffer", offer);
+      this.$router.push("/dashboard/lend/info");
+      // offerService.insertOffer(offer)
+    }
   }
 };
 </script>
@@ -151,14 +184,14 @@ export default {
   background: #f7f7f7;
   margin-top: -2rem;
   padding-bottom: 2rem;
-   @media screen and (max-width:$breakpoint-mobile){
-     margin:0;
-   }
+  @media screen and (max-width: $breakpoint-mobile) {
+    margin: 0;
+  }
   form {
     margin: 2rem 0;
     margin-left: 25%;
-    @media screen and (max-width:$breakpoint-mobile){
-      margin:0 10%;
+    @media screen and (max-width: $breakpoint-mobile) {
+      margin: 0 10%;
     }
     .opaque {
       color: #a4a4a4;
@@ -167,10 +200,10 @@ export default {
       padding-top: 7rem;
       padding-bottom: 4rem;
       font-size: 32px;
-       @media screen and (max-width:$breakpoint-mobile){
-      padding:3rem 0;
-      font-size:30px;
-    }
+      @media screen and (max-width: $breakpoint-mobile) {
+        padding: 3rem 0;
+        font-size: 30px;
+      }
     }
     .form-input {
       margin: 2.5rem 0;
@@ -207,6 +240,9 @@ export default {
         margin: 1rem 0;
         font-size: 13px;
         color: #a4a4a4;
+        @media screen and(max-width: $breakpoint-mobile){
+          font-size:11px;
+        }
         // opacity: 0.55;
         span {
           font-weight: 700;
@@ -220,9 +256,9 @@ export default {
         flex-direction: row;
         justify-content: space-around;
         width: 50%;
-          @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
-    }
+        @media screen and (max-width: $breakpoint-mobile) {
+          width: 100%;
+        }
         .time {
           width: 70%;
           .duration {
@@ -235,16 +271,15 @@ export default {
             width: 100%;
             padding: 1rem 1.5rem;
             background: #fff;
-            border: 1px solid #c3c3c3;            
+            border: 1px solid #c3c3c3;
             font-size: 17px;
             color: #c3c3c3;
             &:focus {
               outline: none;
             }
-           @media screen and (max-width:$breakpoint-mobile)
-           {
-             padding-right:0;
-           }
+            @media screen and (max-width: $breakpoint-mobile) {
+              padding:1rem 0.6rem;
+            }
           }
         }
       }
@@ -262,18 +297,18 @@ export default {
         &:focus {
           outline: none;
         }
-          @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
-    }
+        @media screen and (max-width: $breakpoint-mobile) {
+          width: 100%;
+        }
       }
-        .invalid{
-  border:1px solid red;
-}
+      .invalid {
+        border: 1px solid red;
+      }
       .fif {
         width: 50%;
-          @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
-    }
+        @media screen and (max-width: $breakpoint-mobile) {
+          width: 100%;
+        }
         input {
           width: 100%;
         }
@@ -285,18 +320,18 @@ export default {
     .text {
       color: #a4a4a4;
       width: 52.7%;
-        @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
-    }
+      @media screen and (max-width: $breakpoint-mobile) {
+        width: 100%;
+      }
     }
   }
   .conditions {
     color: #c3c3c3;
     margin-top: 4rem;
-    width:50%;
-    font-size:11px;
-      @media screen and (max-width:$breakpoint-mobile){
-      width:100%;
+    width: 50%;
+    font-size: 11px;
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 100%;
     }
     a {
       color: #c3c3c3;
@@ -311,13 +346,11 @@ export default {
     color: #fff;
     font-size: 12px;
     width: 30%;
-      @media screen and (max-width:$breakpoint-mobile){
-      width:60%;
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 60%;
     }
   }
 }
-
-
 </style>
 
    

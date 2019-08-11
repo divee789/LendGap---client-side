@@ -15,7 +15,7 @@
 <script>
 export default {
   data() {
-    return {
+    return {    
       one: true,
       two: false,
       three: false,

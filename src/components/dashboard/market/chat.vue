@@ -38,11 +38,17 @@ export default {
     margin: 0 auto;
     width: 25%;
     text-align: center;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:70%;
+    }
 
     .fas {
       font-size: 54px;
       opacity: 0.7;
       color: #c3c3c3;
+      @media screen and(max-width: $breakpoint-mobile){
+        font-size:74px;
+      }
     }
     div {
       font-size: 11px;
@@ -56,6 +62,10 @@ export default {
     box-sizing: border-box;
     bottom: 20px;
     right: -15%;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+      right:-10%;
+    }
     .spec{
       margin-right: 10px;
     }
@@ -73,6 +83,9 @@ export default {
         padding: 1rem 1.5rem;
         height: 100%;
         width: 50%;
+        @media screen and(max-width: $breakpoint-mobile){
+          width:60%;
+        }
         &:focus {
           outline: none;
         }

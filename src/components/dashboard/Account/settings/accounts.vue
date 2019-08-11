@@ -55,8 +55,9 @@ export default {};
   padding: 1rem 0rem;
   width: 30%;
   box-sizing: border-box;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: $breakpoint-mobile) {
     font-size: 11px;
+    width:60%;
   }
 }
 .facebook {

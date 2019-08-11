@@ -1,4 +1,4 @@
-<template>
+n<template>
   <div class="employ jose">
     <div class="title">Employment</div>
     <div class="head">ARE YOU EMPLOYED?</div>
@@ -69,6 +69,9 @@ export default {};
     color: #193652;
     font-size: 20px;
     margin-right: 2rem;
+    @media screen and (max-width:$breakpoint-mobile){
+      font-size:15px;
+    }
   }
   input[type="checkbox"] {
     margin-right: 1rem;
@@ -84,6 +87,9 @@ export default {};
     color: #193652;
     font-size: 15px;
     box-sizing: border-box;
+    @media screen and (max-width:$breakpoint-mobile){
+      width:100%;
+    }
     &:focus {
       outline: none; 
     }

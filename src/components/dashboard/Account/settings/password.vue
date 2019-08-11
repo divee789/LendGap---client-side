@@ -63,6 +63,9 @@ input {
   color: #193652;
   font-size: 18px;
   box-sizing: border-box;
+  @media screen and (max-width:$breakpoint-mobile){
+    width:100%;
+  }
   &:focus {
     outline: none;
   }
@@ -75,6 +78,10 @@ input {
   .password-bar {
     width: 50%;
     margin-right: -2rem;
+     @media screen and (max-width:$breakpoint-mobile){
+    margin-right:-10rem;
+    width:90%;
+  }
     .strength-bar {
       background: #a4a4a4;
       height: 3px;

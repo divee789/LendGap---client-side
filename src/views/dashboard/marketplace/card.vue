@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="loan-owner">
-        <div>pic</div>
+        <div><img src="/images/mercy_daniels.jpg" alt=""></div>
         <div>
           <div>
             <div>Lender:</div>
@@ -89,7 +89,8 @@ export default {
   color: #fff;
     @media screen and(max-width: $breakpoint-mobile){
       letter-spacing:1px;
-      padding: 1.5rem 1rem;
+      padding: 2rem 1rem;
+      padding-bottom:1rem;
       font-size:13px;
       box-sizing:border-box;
     }
@@ -113,15 +114,23 @@ export default {
   flex-wrap: wrap;
     @media screen and(max-width: $breakpoint-mobile){
       padding-top:10%;
+      flex-direction: column;
     }
   .amount-details {
     width: 33%;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+      margin-top:3rem;
+    }
     div {
       margin-bottom: 7px;
     }
     .top {
       color: #c3c3c3;
       font-size: 15px;
+      @media screen and (max-width:$breakpoint-mobile){
+        font-size:24px;
+      }
     }
     .naira {
       font-size: 36px;
@@ -138,6 +147,10 @@ export default {
     width: 33%;
     color: #c3c3c3;
     font-weight: 600;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+      margin-top:2rem;
+    }
     div {
       margin-bottom: 10px;
       font-size: 12px;
@@ -155,10 +168,26 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+      margin-top:2rem;
+      margin-left:-1rem;
+    }
+    img{
+      height:20vh;
+      width:150px;
+      filter:grayscale(1.2);
+      object-fit: cover;
+      border-radius:50%;
+    }
     div {
       margin-bottom: 10px;
       color: #c3c3c3;
       margin-right: 10px;
+      @media screen and(max-width: $breakpoint-mobile){
+        margin-left:1rem;
+        width:100%;
+      }
       #name {
         font-weight: 600;
         font-size: 15px;
@@ -173,6 +202,9 @@ export default {
   text-align: end;
   background: rgba(255, 45, 110, 1);
   color: #fff;
+  @media screen and(max-width: $breakpoint-mobile){
+    padding:1rem;
+  }
   button {
     position: relative;
     background-color: #03bf94;
@@ -182,6 +214,9 @@ export default {
     font-weight: bold;
     font-size: 11px;
     width: 15%;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:30%;
+    }
   }
 }
 </style>

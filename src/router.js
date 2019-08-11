@@ -11,78 +11,90 @@ function loadView(view) {
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [{
-    path: "/",
-    name: "home",
-    component: loadView("landing")
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return {selector: to.hash}
+    }
+    return {x: 0, y: 0}
   },
-  {
-    path: "/dashboard",
-    name: "dashboard",
-    component: loadView("dashboard/index"),
-    children: [{
+  routes: [{
       path: "/",
-      name: "market",
-      component: loadView("dashboard/marketplace/index"),
+      name: "home",
+      component: loadView("landing")
+    },
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      component: loadView("dashboard/index"),
       children: [{
-        path: "/",
-        component: loadView("dashboard/marketplace/lists")
-      },
-      {
-        path: "market/card",
-        component: loadView("dashboard/marketplace/card")
-      }
+          path: "/",
+          name: "market",
+          component: loadView("dashboard/marketplace/index"),
+          children: [{
+              path: "/",
+              component: loadView("dashboard/marketplace/lists")
+            },
+            {
+              path: "market/card",
+              component: loadView("dashboard/marketplace/card")
+            }
+          ]
+        },
+        {
+          path: "borrow",
+          component: loadView("dashboard/Borrow/index"),
+          children: [{
+              path: "/",
+              component: loadView("dashboard/Borrow/request")
+            },
+            {
+              path: "info",
+              component: loadView("dashboard/Borrow/info")
+            },
+            {
+              path: "details",
+              component: loadView("dashboard/Borrow/details")
+            }
+          ]
+        },
+        {
+          path: "lend",
+          component: loadView("dashboard/Lend/index"),
+          children: [{
+              path: "/",
+              component: loadView("dashboard/Lend/request")
+            },
+            {
+              path: "info",
+              component: loadView("dashboard/Lend/info")
+            },
+            {
+              path: "details",
+              component: loadView("dashboard/Lend/details")
+            }
+          ]
+        },
+        {
+          path: "history",
+          component: loadView("dashboard/History/index"),
+        },
+        {
+          path: "account",
+          name:"account",
+          component: loadView("dashboard/Account/index") ,
+        },
+        {
+          path: "*",
+          redirect: "/"
+        }
       ]
-    },
-    {
-      path: "borrow",
-      component: loadView("dashboard/Borrow/index"),
-      children: [{
-        path: "/",
-        component: loadView("dashboard/Borrow/request")
-      },
-      {
-        path:"info",
-        component:loadView("dashboard/Borrow/info")
-      },
-      {
-        path: "details",
-        component: loadView("dashboard/Borrow/details")
-      }]
-    },
-    {
-      path: "lend",
-      component: loadView("dashboard/Lend/index"),
-      children:[{
-        path:"/",
-        component:loadView("dashboard/Lend/request")
-      },
-      {
-        path:"info",
-        component:loadView("dashboard/Lend/info")
-      },
-      {
-        path:"details",
-        component:loadView("dashboard/Lend/details")
-      }]
-    },
-    {
-      path: "history",
-      component: loadView("dashboard/History/index"),
-    },
-    {
-      path: "account",
-      component: loadView("dashboard/Account/index")
     },
     {
       path: "*",
       redirect: "/"
     }
-    ]
-  },
-  {
-    path: "*",
-    redirect: "/"
-  }
   ]
 });

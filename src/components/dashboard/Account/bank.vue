@@ -63,6 +63,9 @@ input[type="text"],input[type="number"] {
   color: #193652;
   font-size: 15px;
   box-sizing: border-box;
+  @media screen and (max-width:$breakpoint-mobile){
+    width:100%;
+  }
   &:focus {
     outline: none;
   }

@@ -19,7 +19,7 @@
     </div>
     <div class="head">UPLOAD PHOTO OR SCANNED COPY OF ID CARD</div>
     <div>
-      <button type="upload" class="upload">
+      <button type="file" class="upload">
         <span class="arrow">X</span> UPLOAD FILE
       </button>
     </div>
@@ -51,6 +51,9 @@ export default {};
     color: #193652;
     font-size: 18px;
     margin-right: 2rem;
+    @media screen and (max-width:$breakpoint-mobile){
+      font-size:9px;
+    }
   }
   input[type="checkbox"] {
     margin-right: 1rem;
@@ -66,6 +69,9 @@ export default {};
     color: #193652;
     font-size: 18px;
     box-sizing: border-box;
+    @media screen and (max-width:$breakpoint-mobile){
+      width:100%;
+    }
     &:focus {
       outline: none;
     }
@@ -76,6 +82,9 @@ export default {};
     font-weight: bold;
     color: #fff;
     background: #a4a4a4;
+    @media screen and (max-width:$breakpoint-mobile){
+      padding:1rem 3rem;
+    }
     .arrow {
       margin-right: 10px;
       color: #fff;

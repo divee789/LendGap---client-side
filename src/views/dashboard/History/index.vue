@@ -71,14 +71,24 @@ export default {
 .lend-details {
   padding: 3rem 8%;
   background: #f8edef;
+  @media screen and(max-width: $breakpoint-mobile){
+    flex-direction:column;
+  }
   .amount-details {
     width: 32%;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+      margin-bottom:2rem;
+    }
     div {
       margin-bottom: 3px;
     }
     .top {
       color: #c3c3c3;
       font-size: 16px;
+      @media screen and(max-width: $breakpoint-mobile){
+        margin-bottom:1rem;
+      }
     }
     .naira {
       font-size: 36px;
@@ -97,6 +107,9 @@ export default {
     color: #c3c3c3;
     font-weight: bolder;
     padding-top: 24px;
+    @media screen and(max-width: $breakpoint-mobile){
+      width:100%;
+    }
     div {
       margin-bottom: 5px;
       font-size: 12px;

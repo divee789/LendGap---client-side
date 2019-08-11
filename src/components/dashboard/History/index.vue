@@ -144,6 +144,9 @@ export default {
   cursor: pointer;
   width: 50%;
   text-align: center;
+  @media screen and(max-width: $breakpoint-mobile){
+    padding:0.8rem 0.5rem;
+  }
 }
 
 .req {

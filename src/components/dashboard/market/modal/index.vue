@@ -10,19 +10,20 @@
         <span class="close" style="cursor:pointer;">
           <i class="fas fa-times" @click="close()"></i>
         </span>
-        <div class="flexbox row">
+        <div class="flexbox row"  v-for="offer in offers"
+          :key="offer.id">
           <div class="loan-info jose">
             <p class="top">Loan Offer</p>
             <div class="price josebold">
-              <span class="n josebold">N</span>55,000
+              <span class="n josebold">N</span>{{ offer.loan }}
             </div>
             <p class="id jose">Transaction ID: 000000</p>
 
-            <p class="jose details">Interest: 8%</p>
-            <p class="jose details">Payback Amount: N59,400</p>
-            <p class="jose details">Loan Tenure: 3 months</p>
+            <p class="jose details">Interest: {{ offer.interest }}</p>
+            <p class="jose details">Payback Amount:{{ payment}}</p>
+            <p class="jose details">Loan Tenure: {{ offer.duration }}</p>
             <p class="jose details">Instalments: YES</p>
-            <p class="jose details">Monthly Instalments: N19,800</p>
+            <p class="jose details">Monthly Installments: {{ periods }}</p>
             <p class="rating">
               Lender Rating
               <span class="stars">
@@ -61,6 +62,11 @@
 
 <script>
 export default {
+  props:{
+    offer:{
+      type:Object,
+    }
+  },
   methods: {
     close() {
       this.$emit("close");

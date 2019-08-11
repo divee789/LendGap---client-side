@@ -13,7 +13,7 @@
                 <span class="icon">
                   <i class="fas fa-search-dollar"></i>
                 </span>
-                <span v-if="show">Marketplace</span>
+                <span v-if="show" class="option-text">Marketplace</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/borrow" class="nav-content">
@@ -21,7 +21,7 @@
                 <span class="icon">
                   <i class="fas fa-arrow-right"></i>
                 </span>
-                <span v-if="show">Borrow</span>
+                <span v-if="show" class="option-text">Borrow</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/lend" class="nav-content">
@@ -29,7 +29,7 @@
                 <span class="icon">
                   <i class="fas fa-arrow-left"></i>
                 </span>
-                <span v-if="show">Lend</span>
+                <span v-if="show" class="option-text">Lend</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/history" class="nav-content">
@@ -37,7 +37,7 @@
                 <span class="icon">
                   <i class="far fa-clock"></i>
                 </span>
-                <span v-if="show">History</span>
+                <span v-if="show" class="option-text">History</span>
               </span>
             </router-link>
             <router-link tag="li" to="/dashboard/Account" class="nav-content">
@@ -45,7 +45,7 @@
                 <span class="icon">
                   <i class="fas fa-user-circle"></i>
                 </span>
-                <span v-if="show">Account</span>
+                <span v-if="show" class="option-text">Account</span>
               </span>
             </router-link>
           </ul>
@@ -65,13 +65,13 @@
         </div>
         <div class="left">
           <span>
-            <i class="fas fa-search">X</i>
+            <i class="fas fa-search"></i>
           </span>
           <input type="search" placeholder="Enter Keywords..." />
         </div>
         <div class="right flexbox row">
           <div>
-            <span>
+            <span id="bell">
               <i class="far fa-bell"></i>
             </span>
           </div>
@@ -155,18 +155,31 @@ img {
       &.active {
         display: block;
         margin: 0;
-        margin-top: 1.5rem;
+        margin-top: 3.3rem;
       }
     }
     .fas,
     .far {
       font-size: 20px;
     }
-    .fa-chevron-left,
+   
+    .fa-chevron-left{
+       position: absolute;
+      bottom: 10%;
+      right: 50%;
+      cursor: pointer;
+      font-size: 36px;
+      z-index: 9999999999999999999;
+      color: $main-theme;
+      &:hover {
+        color: #fff;
+      }
+    }
+    
     .fa-chevron-right {
       position: absolute;
       bottom: 10%;
-      right: 40%;
+      right: 35%;
       cursor: pointer;
       font-size: 36px;
       z-index: 9999999999999999999;
@@ -207,11 +220,11 @@ img {
         cursor: pointer;
         .link {
           opacity: 0.7;
-          margin: 0 15%;
+          margin-left:25%;
         }
         .icon {
           color: $main-theme;
-          margin-right: 10px;
+          margin-right: 0;
         }
         &:hover {
           transition: all 0.3s;
@@ -220,7 +233,9 @@ img {
             color: #fff;
           }
         }
-       
+       .option-text{
+         margin-left:10px;
+       }
       }
     }
   }
@@ -264,14 +279,8 @@ img {
         @media screen and (max-width: $breakpoint-mobile) {
           width: unset;
           margin-left:10px;
-         display: none;
-
-        }
-
-
-
-
-        
+          display: none;
+        }  
       }
       .right{
         @media screen and (max-width:$breakpoint-mobile){
@@ -296,6 +305,13 @@ img {
         padding: 1rem;
         font-size: 18px;
       }
+    }
+    #bell{
+      padding:2rem;
+    }
+     .fa-bell{
+      margin-top:0.8rem;
+      font-size:25px;
     }
   }
 }

@@ -1,9 +1,9 @@
 .market {
   padding: 0 15%;
   padding-top: 5rem;
-
-  @media screen and (max-width: $breakpoint-tablet) {
-    padding: 0 5%;
+  background-color: #f7f7f7;
+  @media screen and (max-width:$breakpoint-mobile){
+    padding:  5rem 5%;
   }
 }
 
@@ -36,7 +36,7 @@ p {
   margin: 4rem auto;
 
   @media screen and (max-width: $breakpoint-tablet) {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -45,17 +45,24 @@ p {
   padding: 0.8rem 2rem;
   font-family: "Josefin Sans", sans-serif;
   cursor: pointer;
+  background-color: #d8d8d8;  
+  transition: 0.7s;
+  &:hover {
+    background-color: $main-theme;
+    color: #fff;
+  }
 }
-
+.active{
+    background-color: $main-theme;
+    color: #fff;
+}
 .req {
-  background-color: #d8d8d8;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
 .offer {
-  background-color: $main-theme;
-  color: #fff;
+ 
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -73,6 +80,9 @@ p {
 
   .opacity {
     opacity: 0.5;
+    @media screen and (max-width:$breakpoint-mobile) {
+      font-size: 11px;
+    }
   }
 
   .s {
@@ -108,7 +118,7 @@ p {
 .market-list {
   padding: 5px;
   margin-top: 3rem;  
-
+  width:100%;
   .market-card {
     position: relative;
     box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.05);
@@ -116,6 +126,7 @@ p {
     width: 31%; 
     margin-bottom: 20px;
     font-family: "Josefin Sans", sans-serif;
+    background: #fff;
     border-radius: 5px;
     @media screen and (max-width: 500px) {
     width:100%;  

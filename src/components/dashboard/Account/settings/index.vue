@@ -20,5 +20,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.settings-app{
+  @media screen and (max-width:$breakpoint-mobile){
+ margin:0 -10%;
+  }
+ 
+}
 </style>
 
