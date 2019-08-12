@@ -26,9 +26,9 @@
                     type="text"
                     name="fullName"
                     required
-                    v-model="userName"
+                    v-model="username"
                     @blur="$v.userName.$touch()"
-                  >
+                  />
                   <p v-if="!$v.userName.minLen" class="error">Please provide at least 6 characters.</p>
                   <!-- <p v-if="!$v.userName.required" class="error">This field must not be empty.</p> -->
                 </div>
@@ -42,7 +42,7 @@
                     required
                     v-model="userEmail"
                     @blur="$v.userEmail.$touch()"
-                  >
+                  />
                   <p v-if="!$v.userEmail.email" class="error">Please provide a valid email address.</p>
                   <!-- <p v-if="!$v.userEmail.required" class="error">This field must not be empty.</p> -->
                 </div>
@@ -56,7 +56,7 @@
                     required
                     v-model="password"
                     @input="$v.password.$touch()"
-                  >
+                  />
                   <span class="eye">
                     <i class="fas fa-eye"></i>
                   </span>
@@ -67,7 +67,10 @@
                     <div :class="{invalid: $v.password.$invalid,valid:!$v.password.$invalid}"></div>
                   </div>
                 </div>
-                <p class="error" v-if="!$v.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 6 characters long.</p>
+                <p
+                  class="error"
+                  v-if="!$v.password.strongPassword"
+                >Strong passwords need to have a letter, a number, a special character, and be more than 6 characters long.</p>
               </div>
               <p class="terms">By creating an account,You are agreeing to our Terms and Conditions</p>
               <button class="register" @click="dash">Sign Up</button>
@@ -81,8 +84,11 @@
                     name="logemail"
                     v-model="signInEmail"
                     @blur="$v.signInEmail.$touch()"
-                  >
-                  <p v-if="!$v.signInEmail.email" class="error">Please provide a valid email address.</p>
+                  />
+                  <p
+                    v-if="!$v.signInEmail.email"
+                    class="error"
+                  >Please provide a valid email address.</p>
                 </div>
               </div>
               <div class="input">
@@ -93,23 +99,23 @@
                     name="password"
                     v-model="signInPassword"
                     @blur="$v.signInPassword.$touch()"
-                  >
+                  />
                   <span class="eye">
                     <i class="fas fa-eye"></i>
                   </span>
                 </div>
               </div>
               <p class="terms">Forgot Your Password</p>
-              <button class="register" type="submit" :disabled="$v.$invalid" @click="dash">Sign In</button>
+              <button class="register" type="submit" :disabled="$v.$invalid" @click="dashw">Sign In</button>
             </form>
           </div>
           <div class="rule">
             <div class="block">
-              <hr>
+              <hr />
             </div>
             <div>OR</div>
             <div class="block">
-              <hr>
+              <hr />
             </div>
           </div>
           <div>
@@ -172,9 +178,9 @@ export default {
     return {
       signin: true,
       bar: "",
-      password: null,
+      password: "",
       userEmail: "",
-      userName: "",
+      username: "",
       signInEmail: "",
       signInPassword: ""
     };
@@ -195,14 +201,14 @@ export default {
     password: {
       required,
       minLen: minLength(6),
-       strongPassword(password) {
+      strongPassword(password) {
         return (
           /[a-z]/.test(password) && // checks for a-z
           /[0-9]/.test(password) && // checks for 0-9
           /\W|_/.test(password) && // checks for special char
           password.length >= 6
-        )
-       }
+        );
+      }
     },
     signInPassword: {
       required,
@@ -216,13 +222,29 @@ export default {
     switchSign() {
       this.signin = !this.signin;
     },
-    dash(){
-      this.$router.push("/dashboard")
+    async dash() {
+      event.preventDefault()
+      const user = {
+        username:this.userName,
+        password:this.password,
+        email:this.userEmail
+      }
+      await this.$store.dispatch("signUp",user)
+      this.$router.push("/dashboard");
+    },
+    async dashw(){
+      const logData = {
+        email:signInEmail,
+        password:signInPassword
+      }
+      await this.$store.dispatch("login",logData)
+      this.$router.push("/dashboard");
+
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import './log.scss'
+@import "./log.scss";
 </style>

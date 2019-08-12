@@ -12,13 +12,13 @@
             <li>
               <a href="#products" id="button">Help</a>
             </li>
-            <li>
-              <a href>Log in</a>
-            </li>
+            <router-link tag="li" to="/sign-in" id="rr" >
+              <span class="b" @click="showModal">Log in</span>
+            </router-link>
             <router-link tag="li" to="/sign-in" id="rr" >
               <span class="a" @click="showModal">Sign up</span>
             </router-link>
-          </ul>
+          </ul> 
         </nav>
         <div class="clearfix"></div>
       </header>
