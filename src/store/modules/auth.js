@@ -4,8 +4,8 @@ const url = "http://localhost:9000/api";
 
 export default {
     state: {
-        userData: [],
         accessToken: localStorage.getItem('access_token') || '',
+        userData: {}
     },
     mutations: {
         login(state, token) {
@@ -20,30 +20,30 @@ export default {
             try {
                 console.log('signing up')
                 const response = await axios.post(url + "/register", signUpData)
-                console.log(response)
+                console.log("vuex res", response)
+                return response
+                
             } catch (error) {
-                console.log(error)
+                console.log("catch", error)
+                return error
             }
         },
-        async signIn({ commit }, data) {
+        async logIn({ commit }, logIndata) {
             try {
-                const response = await axios.post('/login', data)
-                const token = response.data.access_token
-                const expiryDate = response.data.exp
-                localStorage.setItem('access_token', token)
-                localStorage.setItem('expiry_date', expiryDate)
-                axios.defaults.headers.common['Authorization'] = token
-                commit('login', token)
+                console.log('logging in')
+                const response = await axios.post(url + '/login', logIndata)
+                console.log('vuex log', response)
+
             } catch (error) {
-                console.log(error)
+                console.log("catch login", error)
                 localStorage.removeItem('access_token')
             }
         },
-        async logOut ({ commit }) {
+        async logOut({ commit }) {
             commit('logout')
             localStorage.removeItem('access_token')
             delete axios.defaults.headers.common['Authorization']
-          },
+        },
         async getProfile({ commit }) {
             try {
                 const response = await axios.get(url + "")

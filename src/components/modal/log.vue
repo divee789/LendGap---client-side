@@ -18,7 +18,8 @@
         </p>
         <div class="modal-body flexbox row">
           <div class="form-wrapper">
-            <form action v-if="signin">
+            <div class="error">{{ error }}</div>
+            <form v-if="signin" @submit="register">
               <div class="input">
                 FULL NAME
                 <div>
@@ -73,7 +74,7 @@
                 >Strong passwords need to have a letter, a number, a special character, and be more than 6 characters long.</p>
               </div>
               <p class="terms">By creating an account,You are agreeing to our Terms and Conditions</p>
-              <button class="register" @click="dash">Sign Up</button>
+              <button class="register" type="submit">Sign Up</button>
             </form>
             <form action v-if="!signin">
               <div class="input">
@@ -106,7 +107,7 @@
                 </div>
               </div>
               <p class="terms">Forgot Your Password</p>
-              <button class="register" type="submit" :disabled="$v.$invalid" @click="dashw">Sign In</button>
+              <button class="register" @click="dashw">Sign In</button>
             </form>
           </div>
           <div class="rule">
@@ -182,7 +183,8 @@ export default {
       userEmail: "",
       username: "",
       signInEmail: "",
-      signInPassword: ""
+      signInPassword: "",
+      error: ""
     };
   },
   validations: {
@@ -222,24 +224,53 @@ export default {
     switchSign() {
       this.signin = !this.signin;
     },
-    async dash() {
-      event.preventDefault()
+    async register() {
+      event.preventDefault();
       const user = {
-        username:this.userName,
-        password:this.password,
-        email:this.userEmail
-      }
-      await this.$store.dispatch("signUp",user)
-      this.$router.push("/dashboard");
-    },
-    async dashw(){
-      const logData = {
-        email:signInEmail,
-        password:signInPassword
-      }
-      await this.$store.dispatch("login",logData)
-      this.$router.push("/dashboard");
+        username: this.username,
+        password: this.password,
+        email: this.userEmail
+      };
+      let response = await this.$store.dispatch("signUp", user);
+      console.log("log res", response);
+      if (
+        response.data !== "A user with the given email is already registered" &&
+        response.data !== "A user with the given username is already registered"
+      ) {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("jwt", response.data.token);
 
+        if (localStorage.getItem("jwt") != null) {
+          this.$emit("loggedIn");
+          if (this.$route.params.nextUrl != null) {
+            this.$router.push(this.$route.params.nextUrl);
+          } else {
+            this.$router.push("/dashboard");
+          }
+        }
+        this.$router.push("/dashboard");
+      } else {
+        this.error = response.data;
+      }
+    },
+    async dashw() {
+      event.preventDefault();
+      const logData = {
+        email: this.signInEmail,
+        password: this.signInPassword
+      };
+      let response = await this.$store.dispatch("logIn", logData);
+      console.log("login res", response);
+      await localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("jwt", response.data.token);
+      if (localStorage.getItem("jwt") != null) {
+        this.$emit("loggedIn");
+        if (this.$route.params.nextUrl != null) {
+          this.$router.push(this.$route.params.nextUrl);
+        } else {
+          this.$router.push("/dashboard");
+        }
+      }
     }
   }
 };

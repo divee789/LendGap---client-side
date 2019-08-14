@@ -10,6 +10,10 @@ hr {
   .modal-fade-leave-active {
     opacity: 0;
   }
+  .error{
+    text-align:center;
+    margin-bottom:1rem;
+  }
   
   .modal-fade-enter-active,
   .modal-fade-leave-active {
@@ -45,9 +49,9 @@ hr {
     box-sizing: border-box;
     color: #000;
     @media screen and (max-width: 600px) {
-      width: 75%;
+      width: 85%;
       height: 70vh;
-      margin-left: 2%;
+      margin-left:3%;
     }
   }
   .close {

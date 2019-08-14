@@ -6,6 +6,7 @@
           <router-link tag="DIV" to="/" class="logo">
             <span v-if="!show" class="fas fa-home"></span>
             <span v-if="show">.lendgap</span>
+            <span>name: {{ user.name }}</span>
           </router-link>
           <ul class="sidenav-content">
             <router-link tag="li" to="/dashboard" class="nav-content">
@@ -91,15 +92,33 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       show: false,
-      hide: false
+      hide: false,
+      user: {
+        name: "Mercy"
+      }
     };
   },
-  methods: {},
+  methods: {
+    getUserData: function() {
+      let self = this;
+      axios
+        .get("http://localhost:9000/api/user")
+        .then(response => {
+          console.log(response);
+          self.$set(this, "user", response.data.user);
+        })
+        .catch(errors => {
+          console.log("getUser error",errors);
+        });
+    },
+  },
   mounted() {
+   this.getUserData();
     var menu = document.querySelector(".hamburger");
     menu.addEventListener("click", () => {
       document.querySelector(".sidenav").classList.toggle("active");
@@ -162,9 +181,9 @@ img {
     .far {
       font-size: 20px;
     }
-   
-    .fa-chevron-left{
-       position: absolute;
+
+    .fa-chevron-left {
+      position: absolute;
       bottom: 10%;
       right: 50%;
       cursor: pointer;
@@ -175,7 +194,7 @@ img {
         color: #fff;
       }
     }
-    
+
     .fa-chevron-right {
       position: absolute;
       bottom: 10%;
@@ -220,7 +239,7 @@ img {
         cursor: pointer;
         .link {
           opacity: 0.7;
-          margin-left:25%;
+          margin-left: 25%;
         }
         .icon {
           color: $main-theme;
@@ -233,9 +252,9 @@ img {
             color: #fff;
           }
         }
-       .option-text{
-         margin-left:10px;
-       }
+        .option-text {
+          margin-left: 10px;
+        }
       }
     }
   }
@@ -256,7 +275,7 @@ img {
     }
     .nav {
       padding: 0.8rem;
-      padding-top:0.5rem;
+      padding-top: 0.5rem;
       opacity: 0.4;
       justify-content: space-around;
       @media screen and (max-width: $breakpoint-mobile) {
@@ -269,22 +288,22 @@ img {
         padding: 0;
         @media screen and (max-width: $breakpoint-mobile) {
           display: block;
-          margin-top:10px;
-          margin-left:-2.5rem;
+          margin-top: 10px;
+          margin-left: -2.5rem;
         }
       }
       .left {
         width: 70%;
-        margin-top:1rem;
+        margin-top: 1rem;
         @media screen and (max-width: $breakpoint-mobile) {
           width: unset;
-          margin-left:10px;
+          margin-left: 10px;
           display: none;
-        }  
+        }
       }
-      .right{
-        @media screen and (max-width:$breakpoint-mobile){
-          margin-right: -2.5rem; 
+      .right {
+        @media screen and (max-width: $breakpoint-mobile) {
+          margin-right: -2.5rem;
         }
       }
       input {
@@ -294,24 +313,23 @@ img {
         font-style: italic;
         font-size: 14px;
         font-family: "Open Sans", sans-serif;
-        &:focus{
+        &:focus {
           outline: none;
         }
         @media screen and (max-width: $breakpoint-mobile) {
         }
-
       }
       span {
         padding: 1rem;
         font-size: 18px;
       }
     }
-    #bell{
-      padding:2rem;
+    #bell {
+      padding: 2rem;
     }
-     .fa-bell{
-      margin-top:0.8rem;
-      font-size:25px;
+    .fa-bell {
+      margin-top: 0.8rem;
+      font-size: 25px;
     }
   }
 }

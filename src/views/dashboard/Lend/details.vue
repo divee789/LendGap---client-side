@@ -127,7 +127,6 @@
 <script>
 import { required,minLength } from "vuelidate/lib/validators";
 // import axios from 'axios';
-import offerService from '../../../markets'
 export default {
   data() {
     return {
